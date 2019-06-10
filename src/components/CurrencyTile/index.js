@@ -1,1 +1,0 @@
-export { CurrencyTile } from "./CurrencyTile";

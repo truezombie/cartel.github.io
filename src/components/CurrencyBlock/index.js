@@ -1,1 +1,0 @@
-export { CurrencyBlock } from "./CurrencyBlock";
