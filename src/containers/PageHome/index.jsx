@@ -3,9 +3,9 @@ import React from "react";
 import dayjs from "dayjs";
 // COMPONENTS
 import { Header, CurrencyBlock, Footer, InfoLine } from "../../components";
-import { ModalMap } from './Modals'
+import { ModalMap } from "./Modals";
 // CONSTANTS
-import { GOOGLE_TABLE_URL, INFO_LINEES } from './constants'
+import { GOOGLE_TABLE_URL, INFO_LINEES } from "./constants";
 
 export class PageHome extends React.Component {
   constructor(props) {
@@ -64,24 +64,24 @@ export class PageHome extends React.Component {
       <React.Fragment>
         <Header />
         <ModalMap show={showMap} toggle={this.toggleMapModal} />
-        <div className="container m-t-4 m-b-4">
-          <div className="columns">
-            <div className="column is-10 is-offset-1 p-l-0 p-r-0 has-text-grey-lighter">
-              <div className="columns">
-                <div className="column">
-                  {
-                    INFO_LINEES.map(item => <InfoLine key={item.text} icon={item.icon}>{item.text}</InfoLine>)
-                  }
-                  <InfoLine icon="fa-map-marked">
-                    <a
-                      className="has-text-grey-light text-underline"
-                      onClick={this.toggleMapModal}
-                    >
-                      Посмотреть на карте
-                    </a>
-                  </InfoLine>
-                </div>
-                {loading ? null : (
+        <div className="container">
+          <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
+            <div className="column">
+              {INFO_LINEES.map(item => (
+                <InfoLine key={item.text} icon={item.icon}>
+                  {item.text}
+                </InfoLine>
+              ))}
+              <InfoLine icon="fa-map-marked">
+                <a
+                  className="has-text-grey-light text-underline"
+                  onClick={this.toggleMapModal}
+                >
+                  Посмотреть на карте
+                </a>
+              </InfoLine>
+              {loading ? null : (
+                <div className="is-hidden-tablet">
                   <InfoLine icon="fa-history">
                     <span>
                       Крус обновлен:&nbsp;
@@ -90,8 +90,20 @@ export class PageHome extends React.Component {
                       )}
                     </span>
                   </InfoLine>
-                )}
-              </div>
+                </div>
+              )}
+            </div>
+            <div className="column has-text-right is-hidden-mobile">
+              {loading ? null : (
+                <InfoLine icon="fa-history">
+                  <span>
+                    Крус обновлен:&nbsp;
+                    {dayjs(`${currencyEntry[0].updated["$t"]}`).format(
+                      "YYYY.MM.DD HH:mm:ss"
+                    )}
+                  </span>
+                </InfoLine>
+              )}
             </div>
           </div>
         </div>

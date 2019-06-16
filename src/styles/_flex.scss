@@ -1,3 +1,25 @@
-.flex-column {
+// .flex-column {
+//   flex-direction: column;
+// }
+
+.is-flex-columns {
   flex-direction: column;
 }
+
+.is-justified-center {
+  justify-content: center;
+}
+
+.is-aligned-center {
+  align-items: center;
+}
+
+// is-justified-start
+// is-justified-end
+// is-justified-around
+// is-justified-between
+// is-aligned-start
+
+// is-aligned-end
+// is-aligned-stretch
+// is-aligned-baseline
