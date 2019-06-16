@@ -54,6 +54,19 @@ export class PageHome extends React.Component {
     });
   };
 
+  // render
+
+  renderCourseUpdatedData = currency => {
+    return (
+      <InfoLine icon="fa-history">
+        <span>
+          Крус обновлен:&nbsp;
+          {dayjs(currency).format("YYYY.MM.DD HH:mm:ss")}
+        </span>
+      </InfoLine>
+    );
+  };
+
   render() {
     const {
       showMap,
@@ -82,28 +95,18 @@ export class PageHome extends React.Component {
               </InfoLine>
               {loading ? null : (
                 <div className="is-hidden-tablet">
-                  <InfoLine icon="fa-history">
-                    <span>
-                      Крус обновлен:&nbsp;
-                      {dayjs(`${currencyEntry[0].updated["$t"]}`).format(
-                        "YYYY.MM.DD HH:mm:ss"
-                      )}
-                    </span>
-                  </InfoLine>
+                  {this.renderCourseUpdatedData(
+                    `${currencyEntry[0].updated["$t"]}`
+                  )}
                 </div>
               )}
             </div>
             <div className="column has-text-right is-hidden-mobile">
-              {loading ? null : (
-                <InfoLine icon="fa-history">
-                  <span>
-                    Крус обновлен:&nbsp;
-                    {dayjs(`${currencyEntry[0].updated["$t"]}`).format(
-                      "YYYY.MM.DD HH:mm:ss"
-                    )}
-                  </span>
-                </InfoLine>
-              )}
+              {loading
+                ? null
+                : this.renderCourseUpdatedData(
+                    `${currencyEntry[0].updated["$t"]}`
+                  )}
             </div>
           </div>
         </div>

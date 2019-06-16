@@ -22,13 +22,23 @@ export const Header = React.memo(props => {
               <span className="icon m-r-1 align-middle">
                 <i className="fas fa-phone-alt" />
               </span>
-              +38 (099) 903-9003
+              <a
+                href="tel:0999039003"
+                className="has-text-grey-light text-underline"
+              >
+                +38 (099) 903-9003
+              </a>
             </span>
             <span>
               <span className="icon m-r-1 align-middle">
                 <i className="fas fa-phone-alt" />
               </span>
-              +38 (068) 903-9003
+              <a
+                href="tel:0689039003"
+                className="has-text-grey-light text-underline"
+              >
+                +38 (068) 903-9003
+              </a>
             </span>
           </div>
           <div className="navbar-item p-r-0">
