@@ -2,7 +2,13 @@
 import React from "react";
 import dayjs from "dayjs";
 // COMPONENTS
-import { Header, CurrencyBlock, Footer, InfoLine } from "../../components";
+import {
+  Header,
+  CurrencyBlock,
+  Footer,
+  InfoLine,
+  Alert
+} from "../../components";
 import { ModalMap } from "./Modals";
 // CONSTANTS
 import { GOOGLE_TABLE_URL, INFO_LINEES } from "./constants";
@@ -61,7 +67,7 @@ export class PageHome extends React.Component {
       <InfoLine icon="fa-history">
         <span>
           Крус обновлен:&nbsp;
-          {dayjs(currency).format("YYYY.MM.DD HH:mm:ss")}
+          {dayjs(currency).format("YYYY.MM.DD HH:mm")}
         </span>
       </InfoLine>
     );
@@ -77,8 +83,11 @@ export class PageHome extends React.Component {
       <React.Fragment>
         <Header />
         <ModalMap show={showMap} toggle={this.toggleMapModal} />
+        <Alert color="is-warning is-radiusless">
+          {"Оптовой считается сумма в эквиваленте не менее 500 у.е."}
+        </Alert>
         <div className="container">
-          <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
+          <div className="columns m-b-2 m-t-2 m-l-0 m-r-0">
             <div className="column">
               {INFO_LINEES.map(item => (
                 <InfoLine key={item.text} icon={item.icon}>
@@ -93,6 +102,11 @@ export class PageHome extends React.Component {
                   Посмотреть на карте
                 </a>
               </InfoLine>
+              <div className="is-hidden-tablet">
+                <InfoLine key="fa-wallet" icon="fa-wallet">
+                  {"Прием ветхих купюр с минимальной комиссией"}
+                </InfoLine>
+              </div>
               {loading ? null : (
                 <div className="is-hidden-tablet">
                   {this.renderCourseUpdatedData(
@@ -102,6 +116,9 @@ export class PageHome extends React.Component {
               )}
             </div>
             <div className="column has-text-right is-hidden-mobile">
+              <InfoLine key="fa-wallet" icon="fa-wallet">
+                {"Прием ветхих купюр с минимальной комиссией"}
+              </InfoLine>
               {loading
                 ? null
                 : this.renderCourseUpdatedData(

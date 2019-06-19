@@ -6,6 +6,17 @@ import { Logo } from "../Logo";
 import { iconTelegram } from "../../utils/icons";
 
 export const Header = React.memo(props => {
+  const renderPhoneLine = (phoneLong, phoneShort) => (
+    <span>
+      <span className="icon m-r-1 align-middle">
+        <i className="fas fa-phone-alt" />
+      </span>
+      <a href={`tel:${phoneShort}`} className="has-text-grey-light">
+        {phoneLong}
+      </a>
+    </span>
+  );
+
   return (
     <div className="container">
       <nav
@@ -18,28 +29,8 @@ export const Header = React.memo(props => {
         </div>
         <div className="navbar-end">
           <div className="navbar-item has-text-grey-lighter is-flex-mobile is-flex-tablet is-flex-columns has-text-center-mobile is-aligned-center">
-            <span>
-              <span className="icon m-r-1 align-middle">
-                <i className="fas fa-phone-alt" />
-              </span>
-              <a
-                href="tel:0999039003"
-                className="has-text-grey-light text-underline"
-              >
-                +38 (099) 903-9003
-              </a>
-            </span>
-            <span>
-              <span className="icon m-r-1 align-middle">
-                <i className="fas fa-phone-alt" />
-              </span>
-              <a
-                href="tel:0689039003"
-                className="has-text-grey-light text-underline"
-              >
-                +38 (068) 903-9003
-              </a>
-            </span>
+            {renderPhoneLine("+38 (099) 903-9003", "0999039003")}
+            {renderPhoneLine("+38 (068) 903-9003", "0689039003")}
           </div>
           <div className="navbar-item p-r-0">
             <p className="control has-text-centered-mobile has-text-centered-tablet">
