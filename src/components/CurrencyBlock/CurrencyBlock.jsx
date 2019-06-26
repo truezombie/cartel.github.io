@@ -41,7 +41,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
                 id="switchRoundedInfo"
                 type="checkbox"
                 name="switchRoundedInfo"
-                className="switch is-rounded is-warning"
+                className="switch is-rounded is-link"
                 checked={toggleState}
                 readOnly
               />

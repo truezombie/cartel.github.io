@@ -2,13 +2,7 @@
 import React from "react";
 import dayjs from "dayjs";
 // COMPONENTS
-import {
-  Header,
-  CurrencyBlock,
-  Footer,
-  InfoLine,
-  Alert
-} from "../../components";
+import { Header, CurrencyBlock, Footer, InfoLine } from "../../components";
 import { ModalMap } from "./Modals";
 // CONSTANTS
 import { GOOGLE_TABLE_URL, INFO_LINEES } from "./constants";
@@ -66,7 +60,7 @@ export class PageHome extends React.Component {
     return (
       <InfoLine icon="fa-history">
         <span>
-          Крус обновлен:&nbsp;
+          Обновлено:&nbsp;
           {dayjs(currency).format("YYYY.MM.DD HH:mm")}
         </span>
       </InfoLine>
@@ -83,10 +77,7 @@ export class PageHome extends React.Component {
       <React.Fragment>
         <Header />
         <ModalMap show={showMap} toggle={this.toggleMapModal} />
-        <Alert color="is-warning is-radiusless">
-          {"Оптовой считается сумма в эквиваленте не менее 500 у.е."}
-        </Alert>
-        <div className="container">
+        <div className="container is-hidden-touch">
           <div className="columns m-b-2 m-t-2 m-l-0 m-r-0">
             <div className="column">
               {INFO_LINEES.map(item => (
@@ -107,13 +98,6 @@ export class PageHome extends React.Component {
                   {"Прием ветхих купюр с минимальной комиссией"}
                 </InfoLine>
               </div>
-              {loading ? null : (
-                <div className="is-hidden-tablet">
-                  {this.renderCourseUpdatedData(
-                    `${currencyEntry[0].updated["$t"]}`
-                  )}
-                </div>
-              )}
             </div>
             <div className="column has-text-right is-hidden-mobile">
               <InfoLine key="fa-wallet" icon="fa-wallet">
@@ -126,6 +110,13 @@ export class PageHome extends React.Component {
                   )}
             </div>
           </div>
+        </div>
+        <div className="column is-hidden-desktop has-text-grey is-size-7">
+          {loading
+            ? null
+            : `Обновлено: ${dayjs(`${currencyEntry[0].updated["$t"]}`).format(
+                "YYYY.MM.DD HH:mm"
+              )}`}
         </div>
         {loading ? (
           <div className="fa-2x has-text-centered m-t-5 m-b-5">
