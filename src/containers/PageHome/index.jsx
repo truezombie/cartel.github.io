@@ -72,9 +72,8 @@ export class PageHome extends React.Component {
         ) : (
           <CurrencyBlock loading={loading} currency={currencyEntry} />
         )}
-
         <section className="container m-t-4 m-b-4 border-top">
-          <div className="columns m-b-4 m-t-4 m-l-0 m-r-0">
+          <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
             <div className="column">
               <h2 className="is-size-5-touch title has-text-grey-lighter is-hidden-desktop">
                 Контакты
@@ -105,7 +104,6 @@ export class PageHome extends React.Component {
                 </span>
                 Работаем 24/7
               </h2>
-              <InfoLine icon="fa-coins">{"Опт от 500 у.е."}</InfoLine>
               <InfoLine icon="fa-money-bill-wave">
                 {"Прием ветхих купюр с минимальной комиссией"}
               </InfoLine>
