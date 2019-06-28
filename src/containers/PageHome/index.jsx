@@ -1,11 +1,10 @@
 // LIBRARIES
 import React from "react";
-import dayjs from "dayjs";
 // COMPONENTS
 import { Header, CurrencyBlock, Footer, InfoLine } from "../../components";
 import { ModalMap } from "./Modals";
 // CONSTANTS
-import { GOOGLE_TABLE_URL, INFO_LINEES } from "./constants";
+import { GOOGLE_TABLE_URL } from "./constants";
 
 export class PageHome extends React.Component {
   constructor(props) {
@@ -56,17 +55,6 @@ export class PageHome extends React.Component {
 
   // render
 
-  renderCourseUpdatedData = currency => {
-    return (
-      <InfoLine icon="fa-history">
-        <span>
-          Обновлено:&nbsp;
-          {dayjs(currency).format("YYYY.MM.DD HH:mm")}
-        </span>
-      </InfoLine>
-    );
-  };
-
   render() {
     const {
       showMap,
@@ -77,14 +65,27 @@ export class PageHome extends React.Component {
       <React.Fragment>
         <Header />
         <ModalMap show={showMap} toggle={this.toggleMapModal} />
-        <div className="container is-hidden-touch">
-          <div className="columns m-b-2 m-t-2 m-l-0 m-r-0">
+        {loading ? (
+          <div className="fa-2x has-text-centered m-t-5 m-b-5">
+            <i className="fas fa-circle-notch fa-spin" />
+          </div>
+        ) : (
+          <CurrencyBlock loading={loading} currency={currencyEntry} />
+        )}
+
+        <section className="container m-t-4 m-b-4 border-top">
+          <div className="columns m-b-4 m-t-4 m-l-0 m-r-0">
             <div className="column">
-              {INFO_LINEES.map(item => (
-                <InfoLine key={item.text} icon={item.icon}>
-                  {item.text}
-                </InfoLine>
-              ))}
+              <h2 className="is-size-5-touch title has-text-grey-lighter is-hidden-desktop">
+                Контакты
+              </h2>
+              <h2 className="title is-size-5-desktop is-size-6-touch has-text-grey-lighter m-b-2">
+                <span className="icon m-r-1 align-middle has-text-grey-lighter">
+                  <i className="fas fa-map-marker-alt" />
+                </span>
+                г. Харьков, пр Науки 7
+              </h2>
+              <InfoLine icon="fa-subway">{"станция метро Научная"}</InfoLine>
               <InfoLine icon="fa-map-marked">
                 <a
                   className="has-text-grey-light text-underline"
@@ -93,38 +94,24 @@ export class PageHome extends React.Component {
                   Посмотреть на карте
                 </a>
               </InfoLine>
-              <div className="is-hidden-tablet">
-                <InfoLine key="fa-wallet" icon="fa-wallet">
-                  {"Прием ветхих купюр с минимальной комиссией"}
-                </InfoLine>
-              </div>
             </div>
-            <div className="column has-text-right is-hidden-mobile">
-              <InfoLine key="fa-wallet" icon="fa-wallet">
+            <div className="column has-text-left-touch has-text-right-desktop">
+              <h2 className="is-size-5-touch title has-text-grey-lighter is-hidden-desktop">
+                Дополнительная информация
+              </h2>
+              <h2 className="title is-size-5-desktop is-size-6-touch has-text-grey-lighter m-b-2">
+                <span className="icon m-r-1 align-middle has-text-grey-lighter">
+                  <i className="fas fa-history" />
+                </span>
+                Работаем 24/7
+              </h2>
+              <InfoLine icon="fa-coins">{"Опт от 500 у.е."}</InfoLine>
+              <InfoLine icon="fa-money-bill-wave">
                 {"Прием ветхих купюр с минимальной комиссией"}
               </InfoLine>
-              {loading
-                ? null
-                : this.renderCourseUpdatedData(
-                    `${currencyEntry[0].updated["$t"]}`
-                  )}
             </div>
           </div>
-        </div>
-        <div className="column is-hidden-desktop has-text-grey is-size-7">
-          {loading
-            ? null
-            : `Обновлено: ${dayjs(`${currencyEntry[0].updated["$t"]}`).format(
-                "YYYY.MM.DD HH:mm"
-              )}`}
-        </div>
-        {loading ? (
-          <div className="fa-2x has-text-centered m-t-5 m-b-5">
-            <i className="fas fa-circle-notch fa-spin" />
-          </div>
-        ) : (
-          <CurrencyBlock loading={loading} currency={currencyEntry} />
-        )}
+        </section>
         <Footer />
       </React.Fragment>
     );

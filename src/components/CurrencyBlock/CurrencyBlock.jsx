@@ -1,5 +1,6 @@
 // LIBRARIES
 import React, { useState } from "react";
+import dayjs from "dayjs";
 // COMPONENTS
 import { CurrencyTile } from "../CurrencyTile";
 // CONSTANTS
@@ -32,9 +33,14 @@ export const CurrencyBlock = React.memo(({ currency }) => {
     : getCurrency(currency, PUR_KEY_RETAIL, SEL_KEY_RETAIL);
 
   return (
-    <div className="container">
+    <div className="container m-t-4 m-b-4">
+      <div className="has-text-grey is-size-6 column has-background-grey-darker m-b-0">
+        {`Обновлено: ${dayjs(`${currency[0].updated["$t"]}`).format(
+          "YYYY.MM.DD HH:mm"
+        )}`}
+      </div>
       <div className="columns is-mobile has-background-grey-darker has-text-grey is-marginless">
-        <div className="column">
+        <div className="column is-half">
           <div className="bd-notification is-dark">
             <div className="field is-inline-block" style={{ height: "26px" }}>
               <input
@@ -51,7 +57,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
                 className="p-t-0 p-b-0 has-text-weight-bold has-text-white-bis is-inline-block"
                 style={{ height: "26px" }}
               >
-                ОПТ
+                ОПТ от 500$
               </label>
             </div>
           </div>
@@ -62,7 +68,8 @@ export const CurrencyBlock = React.memo(({ currency }) => {
       {tableData.map(item => (
         <CurrencyTile
           key={item.name}
-          currency={`${item.name}/UAH`}
+          from={item.name}
+          to={"UAH"}
           purchase={item.pur}
           sale={item.sal}
         />

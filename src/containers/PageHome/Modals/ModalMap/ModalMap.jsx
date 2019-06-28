@@ -13,6 +13,7 @@ export const ModalMap = React.memo(({ show, toggle }) => {
       modalBody={
         <div style={{ minHeight: "500px" }}>
           <iframe
+            title="Google map"
             src={GOOGLE_MAP_URL}
             frameBorder="0"
             style={{
