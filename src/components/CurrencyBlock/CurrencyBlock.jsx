@@ -125,11 +125,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
         />
       ))}
 
-      <div className="column border-top m-t-4">
-        <div className="has-text-grey">
-          За более подробной информацией связанной с мульти валютой обращайтесь
-          по номеру +38-066-262-23-13 - менеджер по мульти валюте Елена
-        </div>
+      <div className="column m-t-4">
         <div className="has-text-centered">
           <a
             className="has-text-grey-light is-size-5"
@@ -137,7 +133,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
           >
             {openedMoreCurrencyState
               ? "Скрыть мульти валюты"
-              : "Показать мульты валюты"}
+              : "Показать мульти валюты"}
           </a>
         </div>
       </div>
@@ -146,10 +142,28 @@ export const CurrencyBlock = React.memo(({ currency }) => {
         <React.Fragment>
           <div className="columns is-mobile has-background-grey-darker has-text-grey is-marginless">
             <div className="column is-half">
-              <div className="bd-notification is-dark" />
+              <div className="bd-notification is-dark has-text-grey-lighter">
+                <span className="is-block m-b-2">
+                  Менеджер по мульти валюте
+                </span>
+                <span className="m-t-4">
+                  <span className="icon m-r-1 align-middle">
+                    <i className="fas fa-phone-alt" />
+                  </span>
+                  <a href="tel:0662622313" className="has-text-grey-lighter">
+                    +38 (066) 262-2313
+                  </a>
+                </span>
+              </div>
             </div>
-            <div className="column">Покупка</div>
-            <div className="column">Продажа</div>
+            <div className="column is-flex is-flex-columns">
+              <span className="is-block is-grow-1" />
+              <span>Покупка</span>
+            </div>
+            <div className="column is-flex is-flex-columns">
+              <span className="is-block is-grow-1" />
+              <span>Продажа</span>
+            </div>
           </div>
           {moreCurrency.map(item => (
             <CurrencyTile

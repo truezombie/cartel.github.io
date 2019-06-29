@@ -23,19 +23,36 @@ export const Header = React.memo(props => {
         <Logo />
         <div className="is-flex is-justified-end">
           <div className="is-flex is-aligned-center m-r-4">
-            <a
-              className="button is-dark is-hidden-touch"
-              href="https://t.me/cartel_obmen"
-            >
-              <span className="icon m-r-1">{iconTelegram()}</span>
-              <span>Следить за курсом в Telegram</span>
-            </a>
-            <a
-              className="button is-dark is-hidden-desktop"
-              href="https://t.me/cartel_obmen"
-            >
-              <span className="icon">{iconTelegram()}</span>
-            </a>
+            <div className="field has-addons">
+              <p className="control">
+                <a
+                  className="button is-dark is-hidden-touch"
+                  href="https://t.me/cartel_obmen"
+                >
+                  <span className="icon m-r-1">{iconTelegram()}</span>
+                  <span>Следить за курсом в Telegram</span>
+                </a>
+                <a
+                  className="button is-dark is-hidden-descktop"
+                  href="https://t.me/cartel_obmen"
+                >
+                  <span className="icon">{iconTelegram()}</span>
+                </a>
+              </p>
+              <p className="control">
+                <a href="#info" className="button is-dark is-hidden-touch">
+                  <span className="icon is-small">
+                    <i className="fas fa-id-card" />
+                  </span>
+                  <span>Контакты</span>
+                </a>
+                <a href="#info" className="button is-dark is-hidden-descktop">
+                  <span className="icon is-small">
+                    <i className="fas fa-id-card" />
+                  </span>
+                </a>
+              </p>
+            </div>
           </div>
           <div className="is-flex is-justified-center is-flex-columns">
             {renderPhoneLine("+38 (099) 903-9003", "0999039003")}

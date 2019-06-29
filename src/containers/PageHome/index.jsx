@@ -72,7 +72,7 @@ export class PageHome extends React.Component {
         ) : (
           <CurrencyBlock loading={loading} currency={currencyEntry} />
         )}
-        <section className="container m-t-4 m-b-4 border-top">
+        <section id="info" className="container m-t-4 m-b-4 border-top">
           <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
             <div className="column">
               <h2 className="is-size-5-touch title has-text-grey-lighter is-hidden-desktop">

@@ -4,7 +4,7 @@ import React from "react";
 export const Footer = React.memo(props => {
   return (
     <div className="container has-text-grey border-top p-t-4">
-      <div>
+      <div className="column">
         <p>
           Хотите купить либо продать валюту? Интересует максимально выгодный
           курс? Желаете получить квалифицированную консультацию и качественное
