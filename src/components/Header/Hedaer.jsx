@@ -33,7 +33,7 @@ export const Header = React.memo(props => {
                   <span>Следить за курсом в Telegram</span>
                 </a>
                 <a
-                  className="button is-dark is-hidden-descktop"
+                  className="button is-dark is-hidden-desktop"
                   href="https://t.me/cartel_obmen"
                 >
                   <span className="icon">{iconTelegram()}</span>
@@ -46,7 +46,7 @@ export const Header = React.memo(props => {
                   </span>
                   <span>Контакты</span>
                 </a>
-                <a href="#info" className="button is-dark is-hidden-descktop">
+                <a href="#info" className="button is-dark is-hidden-desktop">
                   <span className="icon is-small">
                     <i className="fas fa-id-card" />
                   </span>

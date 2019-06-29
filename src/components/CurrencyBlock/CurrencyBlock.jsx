@@ -127,6 +127,13 @@ export const CurrencyBlock = React.memo(({ currency }) => {
 
       <div className="column m-t-4">
         <div className="has-text-centered">
+          <span className="icon has-text-link">
+            {openedMoreCurrencyState ? (
+              <i className="fas fa-chevron-up" />
+            ) : (
+              <i className="fas fa-chevron-down" />
+            )}
+          </span>
           <a
             className="has-text-grey-light is-size-5"
             onClick={toggleMoreCurrency}
