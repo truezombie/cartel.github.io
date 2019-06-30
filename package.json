@@ -6,6 +6,7 @@
     "@fortawesome/fontawesome-free": "^5.9.0",
     "bulma": "^0.7.5",
     "bulma-extensions": "^6.2.7",
+    "currency-flags": "git+https://github.com/transferwise/currency-flags.git",
     "dayjs": "^1.8.14",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",

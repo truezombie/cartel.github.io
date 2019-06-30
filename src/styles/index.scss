@@ -5,6 +5,11 @@
 
 @import "./variables";
 
+// flags
+
+@import "../../node_modules/currency-flags/dist/currency-flags.css";
+@import "./flags";
+
 // bulma
 
 @import "../../node_modules/bulma/bulma.sass";

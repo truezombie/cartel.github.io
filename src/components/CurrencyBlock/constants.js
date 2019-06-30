@@ -9,18 +9,18 @@ export const DESC_KEY = "gsx$_ciyn3";
 export const LESS_CURRENCY = [
   { from: "USD", to: "UAH" },
   { from: "EUR", to: "UAH" },
-  { from: "RUR", to: "UAH" },
+  { from: "RUB", to: "UAH" },
   { from: "PLN", to: "UAH" }
 ];
 export const CROSS_CURRENCY = [
   { from: "EUR", to: "USD" },
-  { from: "USD", to: "RUR" },
+  { from: "USD", to: "RUB" },
   { from: "PLN", to: "USD" }
 ];
 export const MORE_CURRENCY = [
   { from: "TRY", to: "UAH" },
   { from: "CHF", to: "UAH" },
-  { from: "ISL", to: "UAH" },
+  { from: "ILS", to: "UAH" },
   { from: "JPY", to: "UAH" },
   { from: "GBP", to: "UAH" },
   { from: "CNY", to: "UAH" },
@@ -33,7 +33,7 @@ export const MORE_CURRENCY = [
   { from: "SEK", to: "UAH" },
   { from: "HUF", to: "UAH" },
   { from: "KZT", to: "UAH" },
-  { from: "HKR", to: "UAH" },
+  { from: "HRK", to: "UAH" },
   { from: "BGN", to: "UAH" },
   { from: "NOK", to: "UAH" },
   { from: "AED", to: "UAH" },
