@@ -1,10 +1,11 @@
 // LIBRARIES
 import React from "react";
+import { Helmet } from "react-helmet";
 // COMPONENTS
 import { Header, CurrencyBlock, Footer, InfoLine } from "../../components";
 import { ModalMap } from "./Modals";
 // CONSTANTS
-import { GOOGLE_TABLE_URL } from "./constants";
+import { GOOGLE_TABLE_URL, PAGE_TITLE } from "./constants";
 
 export class PageHome extends React.Component {
   constructor(props) {
@@ -63,6 +64,11 @@ export class PageHome extends React.Component {
 
     return (
       <React.Fragment>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{PAGE_TITLE}</title>
+          <meta name="description" content={PAGE_TITLE} />
+        </Helmet>
         <Header />
         <ModalMap show={showMap} toggle={this.toggleMapModal} />
         {loading ? (

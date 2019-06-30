@@ -139,8 +139,8 @@ export const CurrencyBlock = React.memo(({ currency }) => {
             onClick={toggleMoreCurrency}
           >
             {openedMoreCurrencyState
-              ? "Скрыть мульти валюты"
-              : "Показать мульти валюты"}
+              ? "Скрыть другие валюты"
+              : "Показать другие валюты"}
           </a>
         </div>
       </div>

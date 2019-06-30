@@ -1,3 +1,5 @@
+export const PAGE_TITLE =
+  "Cartel круглосуточный обмен валют в Харькове по лучшему курсу. Прием ветхих купюр. Монет. Все валюты мира.";
 export const GOOGLE_TABLE_URL =
   "https://spreadsheets.google.com/feeds/list/1kuQeHmD3bLeYYtH5-okltD_IOzAj07W7KXiAm6XWdQM/1/public/values?alt=json";
 export const GOOGLE_MAP_URL =
