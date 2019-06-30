@@ -81,10 +81,10 @@ export class PageHome extends React.Component {
         <section id="info" className="container m-t-4 m-b-4 border-top">
           <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
             <div className="column">
-              <h2 className="is-size-5-touch title has-text-grey-lighter is-hidden-desktop">
+              <h2 className="is-size-5-touch is-size-5-desktop title has-text-grey">
                 Контакты
               </h2>
-              <h2 className="title is-size-5-desktop is-size-6-touch has-text-grey-lighter m-b-2">
+              <h2 className="title is-size-6-desktop is-size-6-touch has-text-grey-lighter m-b-2">
                 <span className="icon m-r-1 align-middle has-text-grey-lighter">
                   <i className="fas fa-map-marker-alt" />
                 </span>
@@ -99,19 +99,38 @@ export class PageHome extends React.Component {
                   Посмотреть на карте
                 </a>
               </InfoLine>
+              <div className="is-flex is-justified-center is-flex-columns">
+                <span className="m-b-2">
+                  <span className="icon m-r-1 align-middle has-text-grey-lighter">
+                    <i className="fas fa-phone-alt" />
+                  </span>
+                  <a href="tel:0999039003" className="has-text-grey-lighter">
+                    +38 (099) 903-9003
+                  </a>
+                </span>
+                <span className="m-b-2">
+                  <span className="icon m-r-1 align-middle has-text-grey-lighter">
+                    <i className="fas fa-phone-alt" />
+                  </span>
+                  <a href="tel:0689039003" className="has-text-grey-lighter">
+                    +38 (068) 903-9003
+                  </a>
+                </span>
+              </div>
             </div>
             <div className="column has-text-left-touch has-text-right-desktop">
-              <h2 className="is-size-5-touch title has-text-grey-lighter is-hidden-desktop">
+              <h2 className="is-size-5-touch is-size-5-desktop title has-text-grey">
                 Дополнительная информация
               </h2>
-              <h2 className="title is-size-5-desktop is-size-6-touch has-text-grey-lighter m-b-2">
+              <h2 className="title is-size-6-desktop is-size-6-touch has-text-grey-lighter m-b-2">
                 <span className="icon m-r-1 align-middle has-text-grey-lighter">
                   <i className="fas fa-history" />
                 </span>
                 Работаем 24/7
               </h2>
+              <InfoLine icon="fa-coins">{"Принимаем монеты"}</InfoLine>
               <InfoLine icon="fa-money-bill-wave">
-                {"Прием ветхих купюр с минимальной комиссией"}
+                {"Принимаем ветхие купюры с минимальной комиссией"}
               </InfoLine>
             </div>
           </div>

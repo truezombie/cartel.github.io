@@ -81,11 +81,24 @@ export const CurrencyBlock = React.memo(({ currency }) => {
   const tableData = [...lessCurrency, ...crossCurrency];
 
   return (
-    <div className="container m-t-4 m-b-4">
-      <div className="has-text-grey is-size-6 column has-background-grey-darker m-b-0">
-        {`Обновлено: ${dayjs(`${currency[0].updated["$t"]}`).format(
-          "YYYY.MM.DD HH:mm"
-        )}`}
+    <div className="container m-b-4">
+      <div className="columns is-mobile m-t-0 m-l-0 m-r-0 m-b-0 has-text-white-bis">
+        <div className="column">
+          <div className="has-text-grey is-size-6 has-background-grey-darker m-b-0 is-size-7-mobile">
+            <span className="align-sub">
+              <span className="is-hidden-mobile ">Обновлено:&nbsp;</span>
+              {`${dayjs(`${currency[0].updated["$t"]}`).format(
+                "YYYY.MM.DD HH:mm"
+              )}`}
+            </span>
+          </div>
+        </div>
+        <div className="column has-text-right is-three-fifths">
+          <span className="icon m-r-1 align-middle has-text-grey-lighter">
+            <i className="fas fa-history" />
+          </span>
+          Работаем 24/7
+        </div>
       </div>
 
       <div className="columns is-mobile has-background-grey-darker has-text-grey is-marginless">
@@ -103,16 +116,24 @@ export const CurrencyBlock = React.memo(({ currency }) => {
               <label
                 htmlFor="switchRoundedInfo"
                 onClick={toggle}
-                className="p-t-0 p-b-0 has-text-weight-bold has-text-white-bis is-inline-block"
+                className="p-t-0 p-b-0 has-text-weight-bold has-text-white-bis is-inline-block is-size-7-mobile"
                 style={{ height: "26px" }}
               >
-                ОПТ от 500 у.е
+                <span style={{ lineHeight: "26px" }} className="align-sub">
+                  {toggleState ? "ОПТ от 500$" : "Розница"}
+                </span>
               </label>
             </div>
           </div>
         </div>
-        <div className="column">Покупка</div>
-        <div className="column">Продажа</div>
+        <div className="column is-flex is-flex-columns">
+          <span className="is-block is-grow-1" />
+          <span className="is-size-7-mobile">Покупка</span>
+        </div>
+        <div className="column is-flex is-flex-columns">
+          <span className="is-block is-grow-1" />
+          <span className="is-size-7-mobile">Продажа</span>
+        </div>
       </div>
       {tableData.map(item => (
         <CurrencyTile
@@ -146,30 +167,27 @@ export const CurrencyBlock = React.memo(({ currency }) => {
       </div>
 
       {openedMoreCurrencyState ? (
-        <React.Fragment>
+        <div>
+          <div className="box bd-notification is-dark has-text-grey-lighter has-background-black-ter is-radiusless">
+            <span className="m-t-4">
+              <span className="icon m-r-1 align-middle">
+                <i className="fas fa-phone-alt" />
+              </span>
+              <a href="tel:0662622313" className="has-text-grey-lighter">
+                +38 (066) 262-2313
+              </a>
+            </span>
+            <span className="m-b-1"> - менеджер по мульти валюте</span>
+          </div>
           <div className="columns is-mobile has-background-grey-darker has-text-grey is-marginless">
-            <div className="column is-half">
-              <div className="bd-notification is-dark has-text-grey-lighter">
-                <span className="is-block m-b-2">
-                  Менеджер по мульти валюте
-                </span>
-                <span className="m-t-4">
-                  <span className="icon m-r-1 align-middle">
-                    <i className="fas fa-phone-alt" />
-                  </span>
-                  <a href="tel:0662622313" className="has-text-grey-lighter">
-                    +38 (066) 262-2313
-                  </a>
-                </span>
-              </div>
+            <div className="column is-half" />
+            <div className="column is-flex is-flex-columns">
+              <span className="is-block is-grow-1" />
+              <span className="is-size-7-mobile">Покупка</span>
             </div>
             <div className="column is-flex is-flex-columns">
               <span className="is-block is-grow-1" />
-              <span>Покупка</span>
-            </div>
-            <div className="column is-flex is-flex-columns">
-              <span className="is-block is-grow-1" />
-              <span>Продажа</span>
+              <span className="is-size-7-mobile">Продажа</span>
             </div>
           </div>
           {moreCurrency.map(item => (
@@ -182,7 +200,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
               descr={item.descr}
             />
           ))}
-        </React.Fragment>
+        </div>
       ) : null}
     </div>
   );
