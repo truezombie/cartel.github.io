@@ -2,7 +2,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 // COMPONENTS
-import { Header, CurrencyBlock, Footer, InfoLine } from "../../components";
+import { Header, CurrencyBlock, InfoLine } from "../../components";
 import { ModalMap } from "./Modals";
 // CONSTANTS
 import { GOOGLE_TABLE_URL, PAGE_TITLE } from "./constants";
@@ -90,7 +90,7 @@ export class PageHome extends React.Component {
                 </span>
                 г. Харьков, пр Науки 7
               </h2>
-              <InfoLine icon="fa-subway">{"станция метро Научная"}</InfoLine>
+              <InfoLine icon="fa-subway">станция метро Научная</InfoLine>
               <InfoLine icon="fa-map-marked">
                 <a
                   className="has-text-grey-light text-underline"
@@ -135,7 +135,6 @@ export class PageHome extends React.Component {
             </div>
           </div>
         </section>
-        <Footer />
       </React.Fragment>
     );
   }
