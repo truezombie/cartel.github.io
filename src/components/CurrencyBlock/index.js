@@ -1,1 +1,3 @@
-export { CurrencyBlock } from "./CurrencyBlock";
+import CurrencyBlock from "./CurrencyBlock";
+
+export { CurrencyBlock };

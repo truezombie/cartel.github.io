@@ -4,29 +4,20 @@ import dayjs from "dayjs";
 // COMPONENTS
 import { CurrencyTile } from "../CurrencyTile";
 import { Toggler } from "../Toggler";
-// CONSTANTS
-import {
-  PUR_KEY_RETAIL,
-  PUR_KEY_WHOLESALE,
-  SEL_KEY_RETAIL,
-  SEL_KEY_WHOLESALE,
-  LESS_CURRENCY,
-  MORE_CURRENCY,
-  DESC_KEY,
-  CROSS_CURRENCY
-} from "./constants";
-// UTILS
-import { getCurrency } from "./utils";
+// HOC
+import withCurrency from "./withCurrency";
 
-export const CurrencyBlock = React.memo(({ currency }) => {
-  const [toggleState, setToggleState] = useState(true);
+const CurrencyBlock = ({
+  currency,
+  loading,
+  toggleWholesale,
+  isWholesale,
+  currencyDataMain,
+  currencyDataAdditional
+}) => {
   const [openedMoreCurrencyState, setToggleOpenedMoreCurrency] = useState(
     false
   );
-
-  const toggle = () => {
-    setToggleState(toggleState === false ? true : false);
-  };
 
   const toggleMoreCurrency = () => {
     setToggleOpenedMoreCurrency(
@@ -34,52 +25,10 @@ export const CurrencyBlock = React.memo(({ currency }) => {
     );
   };
 
-  const lessCurrency = toggleState
-    ? getCurrency(
-        currency,
-        PUR_KEY_WHOLESALE,
-        SEL_KEY_WHOLESALE,
-        DESC_KEY,
-        1,
-        LESS_CURRENCY
-      )
-    : getCurrency(
-        currency,
-        PUR_KEY_RETAIL,
-        SEL_KEY_RETAIL,
-        DESC_KEY,
-        1,
-        LESS_CURRENCY
-      );
-
-  const crossCurrency = toggleState
-    ? getCurrency(
-        currency,
-        PUR_KEY_WHOLESALE,
-        SEL_KEY_WHOLESALE,
-        DESC_KEY,
-        6,
-        CROSS_CURRENCY
-      )
-    : getCurrency(
-        currency,
-        PUR_KEY_RETAIL,
-        SEL_KEY_RETAIL,
-        DESC_KEY,
-        6,
-        CROSS_CURRENCY
-      );
-
-  const moreCurrency = getCurrency(
-    currency,
-    PUR_KEY_WHOLESALE,
-    SEL_KEY_WHOLESALE,
-    DESC_KEY,
-    10,
-    MORE_CURRENCY
-  );
-
-  const tableData = [...lessCurrency, ...crossCurrency];
+  const updatedMsg =
+    currency[0] && currency[0].updated["$t"]
+      ? dayjs(`${currency[0].updated["$t"]}`).format("YYYY.MM.DD HH:mm")
+      : "-";
 
   return (
     <div className="container m-b-4">
@@ -88,9 +37,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
           <div className="has-text-grey is-size-6 has-background-grey-darker m-b-0 is-size-7-mobile">
             <span className="align-sub">
               <span className="is-hidden-mobile ">Обновлено:&nbsp;</span>
-              {`${dayjs(`${currency[0].updated["$t"]}`).format(
-                "YYYY.MM.DD HH:mm"
-              )}`}
+              {updatedMsg}
             </span>
           </div>
         </div>
@@ -111,17 +58,17 @@ export const CurrencyBlock = React.memo(({ currency }) => {
                 type="checkbox"
                 name="switchRoundedInfo"
                 className="switch is-rounded is-link"
-                checked={toggleState}
+                checked={isWholesale}
                 readOnly
               />
               <label
                 htmlFor="switchRoundedInfo"
-                onClick={toggle}
+                onClick={toggleWholesale}
                 className="p-t-0 p-b-0 has-text-weight-bold has-text-white-bis is-inline-block is-size-7-mobile"
                 style={{ height: "26px" }}
               >
                 <span style={{ lineHeight: "26px" }} className="align-sub">
-                  {toggleState ? "ОПТ от 500$" : "Розница"}
+                  {isWholesale ? "ОПТ от 500$" : "Розница"}
                 </span>
               </label>
             </div>
@@ -136,7 +83,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
           <span className="is-size-7-mobile">Продажа</span>
         </div>
       </div>
-      {tableData.map(item => (
+      {currencyDataMain.map(item => (
         <CurrencyTile
           key={item.from + item.to}
           from={item.from}
@@ -144,6 +91,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
           purchase={item.pur}
           sale={item.sal}
           descr={item.descr}
+          loading={loading}
         />
       ))}
 
@@ -178,7 +126,7 @@ export const CurrencyBlock = React.memo(({ currency }) => {
               <span className="is-size-7-mobile">Продажа</span>
             </div>
           </div>
-          {moreCurrency.map(item => (
+          {currencyDataAdditional.map(item => (
             <CurrencyTile
               key={item.from + item.to}
               from={item.from}
@@ -186,10 +134,13 @@ export const CurrencyBlock = React.memo(({ currency }) => {
               purchase={item.pur}
               sale={item.sal}
               descr={item.descr}
+              loading={loading}
             />
           ))}
         </div>
       ) : null}
     </div>
   );
-});
+};
+
+export default withCurrency(CurrencyBlock);

@@ -71,13 +71,7 @@ export class PageHome extends React.Component {
         </Helmet>
         <Header />
         <ModalMap show={showMap} toggle={this.toggleMapModal} />
-        {loading ? (
-          <div className="fa-2x has-text-centered m-t-5 m-b-5">
-            <i className="fas fa-circle-notch fa-spin" />
-          </div>
-        ) : (
-          <CurrencyBlock loading={loading} currency={currencyEntry} />
-        )}
+        <CurrencyBlock loading={loading} currency={currencyEntry} />
         <section id="info" className="container m-t-4 m-b-4 border-top">
           <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
             <div className="column">
