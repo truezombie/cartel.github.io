@@ -2,7 +2,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 // COMPONENTS
-import { Header, CurrencyBlock, InfoLine } from "../../components";
+import {
+  Header,
+  CurrencyBlock,
+  InfoLine,
+  ErrorBoundary
+} from "../../components";
 import { ModalMap } from "./Modals";
 // CONSTANTS
 import { GOOGLE_TABLE_URL, PAGE_TITLE } from "./constants";
@@ -71,7 +76,9 @@ export class PageHome extends React.Component {
         </Helmet>
         <Header />
         <ModalMap show={showMap} toggle={this.toggleMapModal} />
-        <CurrencyBlock loading={loading} currency={currencyEntry} />
+        <ErrorBoundary>
+          <CurrencyBlock loading={loading} currency={currencyEntry} />
+        </ErrorBoundary>
         <section id="info" className="container m-t-4 m-b-4 border-top">
           <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
             <div className="column">
