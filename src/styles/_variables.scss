@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=cyrillic");
+
 $desktop: 1140px;
 $widescreen: 1140px;
 $fullhd: 1140px;
@@ -5,6 +7,7 @@ $fullhd: 1140px;
 $blue: #137cbd;
 $red: #c23030;
 $yellow: #d9822b;
+$switch-background-active: #4a4a4a;
 
-$family-sans-serif: Tahoma, Verdana, Segoe, sans-serif;
+$family-sans-serif: "Roboto", sans-serif;
 $family-monospace: "Roboto Mono", monospace;

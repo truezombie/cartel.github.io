@@ -57,7 +57,7 @@ const CurrencyBlock = ({
                 id="switchRoundedInfo"
                 type="checkbox"
                 name="switchRoundedInfo"
-                className="switch is-rounded is-link"
+                class="switch"
                 checked={isWholesale}
                 readOnly
               />
@@ -83,17 +83,19 @@ const CurrencyBlock = ({
           <span className="is-size-7-mobile">Продажа</span>
         </div>
       </div>
-      {currencyDataMain.map(item => (
-        <CurrencyTile
-          key={item.from + item.to}
-          from={item.from}
-          to={item.to}
-          purchase={item.pur}
-          sale={item.sal}
-          descr={item.descr}
-          loading={loading}
-        />
-      ))}
+      <div className="border-wrapper">
+        {currencyDataMain.map(item => (
+          <CurrencyTile
+            key={item.from + item.to}
+            from={item.from}
+            to={item.to}
+            purchase={item.pur}
+            sale={item.sal}
+            descr={item.descr}
+            loading={loading}
+          />
+        ))}
+      </div>
 
       <Toggler
         messageOpen="Скрыть другие валюты"
@@ -104,7 +106,7 @@ const CurrencyBlock = ({
 
       {openedMoreCurrencyState ? (
         <div>
-          <div className="box bd-notification is-dark has-text-grey-lighter has-background-black-ter is-radiusless">
+          <div className="box bd-notification is-dark has-text-grey-lighter has-background-black-ter is-radiusless border-wrapper">
             <span className="m-t-4">
               <span className="icon m-r-1 align-middle">
                 <i className="fas fa-phone-alt" />
@@ -126,17 +128,19 @@ const CurrencyBlock = ({
               <span className="is-size-7-mobile">Продажа</span>
             </div>
           </div>
-          {currencyDataAdditional.map(item => (
-            <CurrencyTile
-              key={item.from + item.to}
-              from={item.from}
-              to={item.to}
-              purchase={item.pur}
-              sale={item.sal}
-              descr={item.descr}
-              loading={loading}
-            />
-          ))}
+          <div className="border-wrapper">
+            {currencyDataAdditional.map(item => (
+              <CurrencyTile
+                key={item.from + item.to}
+                from={item.from}
+                to={item.to}
+                purchase={item.pur}
+                sale={item.sal}
+                descr={item.descr}
+                loading={loading}
+              />
+            ))}
+          </div>
         </div>
       ) : null}
     </div>

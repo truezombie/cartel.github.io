@@ -15,7 +15,7 @@ export const LESS_CURRENCY = [
 export const CROSS_CURRENCY = [
   { from: "EUR", to: "USD" },
   { from: "USD", to: "RUB" },
-  { from: "PLN", to: "USD" }
+  { from: "USD", to: "PLN" }
 ];
 export const MORE_CURRENCY = [
   { from: "TRY", to: "UAH" },
