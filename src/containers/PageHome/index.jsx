@@ -10,13 +10,14 @@ import {
 } from "../../components";
 import { ModalMap } from "./Modals";
 // CONSTANTS
-import { GOOGLE_TABLE_URL, PAGE_TITLE } from "./constants";
+import { PAGE_TITLE, CITY_KEYS, CITIES } from "./constants";
 
 export class PageHome extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      city: CITY_KEYS.kharkiv,
       showMap: false,
       currency: {
         loading: true,
@@ -34,7 +35,9 @@ export class PageHome extends React.Component {
   // get
 
   getCurrencyData() {
-    fetch(GOOGLE_TABLE_URL)
+    const { city } = this.state;
+
+    fetch(CITIES[city].tableUrl)
       .then(response => {
         return response.json();
       })
@@ -42,6 +45,7 @@ export class PageHome extends React.Component {
         this.setState({
           ...this.state,
           currency: {
+            ...this.state.currency,
             loading: false,
             currencyEntry: json.feed.entry
           }
@@ -51,8 +55,38 @@ export class PageHome extends React.Component {
 
   // handlers
 
+  onChangeCity = city => {
+    this.setState(
+      {
+        ...this.state,
+        currency: {
+          ...this.state.currency,
+          loading: true
+        }
+      },
+      () => {
+        fetch(CITIES[city].tableUrl)
+          .then(response => {
+            return response.json();
+          })
+          .then(json => {
+            this.setState({
+              ...this.state,
+              city,
+              currency: {
+                ...this.state.currency,
+                loading: false,
+                currencyEntry: json.feed.entry
+              }
+            });
+          });
+      }
+    );
+  };
+
   toggleMapModal = () => {
     const { showMap } = this.state;
+
     this.setState({
       ...this.state,
       showMap: !showMap
@@ -64,6 +98,7 @@ export class PageHome extends React.Component {
   render() {
     const {
       showMap,
+      city,
       currency: { loading, currencyEntry }
     } = this.state;
 
@@ -74,10 +109,19 @@ export class PageHome extends React.Component {
           <title>{PAGE_TITLE}</title>
           <meta name="description" content={PAGE_TITLE} />
         </Helmet>
-        <Header />
-        <ModalMap show={showMap} toggle={this.toggleMapModal} />
+        <Header phoneNumbers={CITIES[city].phoneNumbers} />
+        <ModalMap
+          mapUrl={CITIES[city].googleMap}
+          show={showMap}
+          toggle={this.toggleMapModal}
+        />
         <ErrorBoundary>
-          <CurrencyBlock loading={loading} currency={currencyEntry} />
+          <CurrencyBlock
+            loading={loading}
+            currency={currencyEntry}
+            city={city}
+            onChangeCity={this.onChangeCity}
+          />
         </ErrorBoundary>
         <section id="info" className="container m-t-4 m-b-4 border-top">
           <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
@@ -85,13 +129,11 @@ export class PageHome extends React.Component {
               <h2 className="is-size-5-touch is-size-5-desktop title has-text-grey">
                 Контакты
               </h2>
-              <h2 className="title is-size-6-desktop is-size-6-touch has-text-grey-lighter m-b-2">
-                <span className="icon m-r-1 align-middle has-text-grey-lighter">
-                  <i className="fas fa-map-marker-alt" />
-                </span>
-                г. Харьков, пр Науки 7
-              </h2>
-              <InfoLine icon="fa-subway">станция метро Научная</InfoLine>
+              {CITIES[city].cityInfo.map(item => (
+                <InfoLine key={item.label} icon={item.icon}>
+                  {item.label}
+                </InfoLine>
+              ))}
               <InfoLine icon="fa-map-marked">
                 <a
                   className="has-text-grey-light text-underline"
@@ -101,22 +143,16 @@ export class PageHome extends React.Component {
                 </a>
               </InfoLine>
               <div className="is-flex is-justified-center is-flex-columns">
-                <span className="m-b-2">
-                  <span className="icon m-r-1 align-middle has-text-grey-lighter">
-                    <i className="fas fa-phone-alt" />
+                {CITIES[city].phoneNumbers.map(item => (
+                  <span key={item} className="m-b-2">
+                    <span className="icon m-r-1 align-middle has-text-grey-lighter">
+                      <i className="fas fa-phone-alt" />
+                    </span>
+                    <a href={`tel:${item}`} className="has-text-grey-lighter">
+                      {item}
+                    </a>
                   </span>
-                  <a href="tel:0999039003" className="has-text-grey-lighter">
-                    +38 (099) 903-9003
-                  </a>
-                </span>
-                <span className="m-b-2">
-                  <span className="icon m-r-1 align-middle has-text-grey-lighter">
-                    <i className="fas fa-phone-alt" />
-                  </span>
-                  <a href="tel:0689039003" className="has-text-grey-lighter">
-                    +38 (068) 903-9003
-                  </a>
-                </span>
+                ))}
               </div>
             </div>
             <div className="column has-text-left-touch has-text-right-desktop">

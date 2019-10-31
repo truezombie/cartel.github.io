@@ -6,8 +6,12 @@ import { CurrencyTile } from "../CurrencyTile";
 import { Toggler } from "../Toggler";
 // HOC
 import withCurrency from "./withCurrency";
+// CONSTANTS
+import { CITY_KEYS } from "../../containers/PageHome/constants";
 
 const CurrencyBlock = ({
+  city,
+  onChangeCity,
   currency,
   loading,
   toggleWholesale,
@@ -32,8 +36,49 @@ const CurrencyBlock = ({
 
   return (
     <div className="container m-b-4">
-      <div className="columns is-mobile m-t-0 m-l-0 m-r-0 m-b-0 has-text-white-bis">
+      <div className="columns is-mobile m-t-0 m-l-0 m-r-0 m-b-0 has-text-white-bis border-bottom">
         <div className="column">
+          <div className="field is-size-7-mobile">
+            <input
+              className="is-checkradio is-white"
+              id="exampleRadioDefault"
+              type="radio"
+              name="exampleRadioDefault"
+              checked={city === CITY_KEYS.kharkiv}
+              readOnly
+            />
+            <label
+              htmlFor="exampleRadioDefault"
+              onClick={() => onChangeCity(CITY_KEYS.kharkiv)}
+            >
+              Харьков
+            </label>
+          </div>
+
+          <div className="field is-size-7-mobile">
+            <input
+              className="is-checkradio is-white"
+              id="exampleRadioSuccess"
+              type="radio"
+              name="exampleRadioSuccess"
+              checked={city === CITY_KEYS.pokrowsk}
+              readOnly
+            />
+            <label
+              htmlFor="exampleRadioSuccess"
+              onClick={() => onChangeCity(CITY_KEYS.pokrowsk)}
+            >
+              Покровск
+            </label>
+          </div>
+        </div>
+        <div className="column has-text-right is-three-fifths">
+          <div className="m-b-3">
+            <span className="icon m-r-1 align-middle has-text-grey-lighter">
+              <i className="fas fa-history" />
+            </span>
+            Работаем 24/7
+          </div>
           <div className="has-text-grey is-size-6 has-background-grey-darker m-b-0 is-size-7-mobile">
             <span className="align-sub">
               <span className="is-hidden-mobile ">Обновлено:&nbsp;</span>
@@ -41,45 +86,34 @@ const CurrencyBlock = ({
             </span>
           </div>
         </div>
-        <div className="column has-text-right is-three-fifths">
-          <span className="icon m-r-1 align-middle has-text-grey-lighter">
-            <i className="fas fa-history" />
-          </span>
-          Работаем 24/7
-        </div>
       </div>
 
       <div className="columns is-mobile has-background-grey-darker has-text-grey is-marginless">
         <div className="column is-half">
           <div className="bd-notification is-dark">
-            <div className="field is-inline-block" style={{ height: "26px" }}>
+            <div className="field is-size-7-mobile">
               <input
-                id="switchRoundedInfo"
+                className="is-checkradio is-white"
+                id="exampleCheckboxWhite"
                 type="checkbox"
-                name="switchRoundedInfo"
-                class="switch"
+                name="exampleCheckboxWhite"
                 checked={isWholesale}
                 readOnly
               />
               <label
-                htmlFor="switchRoundedInfo"
+                htmlFor="exampleCheckboxWhite"
+                className="has-text-white"
                 onClick={toggleWholesale}
-                className="p-t-0 p-b-0 has-text-weight-bold has-text-white-bis is-inline-block is-size-7-mobile"
-                style={{ height: "26px" }}
               >
-                <span style={{ lineHeight: "26px" }} className="align-sub">
-                  {isWholesale ? "ОПТ от 500$" : "Розница"}
-                </span>
+                {isWholesale ? "ОПТ от 500$" : "Розница"}
               </label>
             </div>
           </div>
         </div>
-        <div className="column is-flex is-flex-columns">
-          <span className="is-block is-grow-1" />
+        <div className="column is-flex is-aligned-center">
           <span className="is-size-7-mobile">Покупка</span>
         </div>
-        <div className="column is-flex is-flex-columns">
-          <span className="is-block is-grow-1" />
+        <div className="column is-flex is-aligned-center">
           <span className="is-size-7-mobile">Продажа</span>
         </div>
       </div>
@@ -119,12 +153,10 @@ const CurrencyBlock = ({
           </div>
           <div className="columns is-mobile has-background-grey-darker has-text-grey is-marginless">
             <div className="column is-half" />
-            <div className="column is-flex is-flex-columns">
-              <span className="is-block is-grow-1" />
+            <div className="column is-flex is-aligned-center">
               <span className="is-size-7-mobile">Покупка</span>
             </div>
-            <div className="column is-flex is-flex-columns">
-              <span className="is-block is-grow-1" />
+            <div className="column is-flex is-aligned-center">
               <span className="is-size-7-mobile">Продажа</span>
             </div>
           </div>

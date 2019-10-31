@@ -6,13 +6,13 @@ import { Logo } from "../Logo";
 import { iconTelegram } from "../../utils/icons";
 
 export const Header = React.memo(props => {
-  const renderPhoneLine = (phoneLong, phoneShort) => (
-    <span>
+  const renderPhoneLine = phone => (
+    <span key={phone}>
       <span className="icon m-r-1 align-middle has-text-grey-lighter">
         <i className="fas fa-phone-alt" />
       </span>
-      <a href={`tel:${phoneShort}`} className="has-text-grey-lighter">
-        {phoneLong}
+      <a href={`tel:${phone}`} className="has-text-grey-lighter">
+        {phone}
       </a>
     </span>
   );
@@ -56,8 +56,7 @@ export const Header = React.memo(props => {
             </div>
           </div>
           <div className="m-l-4 is-flex is-justified-center is-flex-columns is-hidden-mobile">
-            {renderPhoneLine("+38 (099) 903-9003", "0999039003")}
-            {renderPhoneLine("+38 (068) 903-9003", "0689039003")}
+            {props.phoneNumbers.map(item => renderPhoneLine(item))}
           </div>
         </div>
       </div>

@@ -2,10 +2,8 @@
 import React from "react";
 // COMPONENTS
 import { ModalWindow } from "../../../../components";
-// CONSTANTS
-import { GOOGLE_MAP_URL } from "../../constants";
 
-export const ModalMap = React.memo(({ show, toggle }) => {
+export const ModalMap = React.memo(({ mapUrl, show, toggle }) => {
   return (
     <ModalWindow
       show={show}
@@ -14,7 +12,7 @@ export const ModalMap = React.memo(({ show, toggle }) => {
         <div style={{ minHeight: "500px" }}>
           <iframe
             title="Google map"
-            src={GOOGLE_MAP_URL}
+            src={mapUrl}
             frameBorder="0"
             style={{
               minWidth: "320px",

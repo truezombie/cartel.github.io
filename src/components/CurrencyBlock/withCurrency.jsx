@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  PUR_KEY_RETAIL,
-  PUR_KEY_WHOLESALE,
-  SEL_KEY_RETAIL,
-  SEL_KEY_WHOLESALE,
-  LESS_CURRENCY,
-  MORE_CURRENCY,
-  DESC_KEY,
-  CROSS_CURRENCY
-} from "./constants";
+import { LESS_CURRENCY, MORE_CURRENCY, CROSS_CURRENCY } from "./constants";
+import { CITIES } from "../../containers/PageHome/constants";
 
 const withCurrency = WrappedComponent => {
   class HOC extends React.Component {
@@ -24,7 +16,8 @@ const withCurrency = WrappedComponent => {
     };
 
     getCurrency = (purKey, salKey, startIndex, arrayCurrNames) => {
-      const { currency, loading } = this.props;
+      const { currency, loading, city } = this.props;
+      const currentCity = CITIES[city];
 
       return arrayCurrNames.map((item, index) => {
         return !loading
@@ -33,8 +26,8 @@ const withCurrency = WrappedComponent => {
               to: item.to,
               pur: currency[index + startIndex][purKey]["$t"],
               sal: currency[index + startIndex][salKey]["$t"],
-              descr: currency[index + startIndex][DESC_KEY]
-                ? currency[index + startIndex][DESC_KEY]["$t"]
+              descr: currency[index + startIndex][currentCity.deskKey]
+                ? currency[index + startIndex][currentCity.deskKey]["$t"]
                 : undefined
             }
           : {
@@ -49,28 +42,41 @@ const withCurrency = WrappedComponent => {
 
     render() {
       const { isWholesale } = this.state;
+      const { city } = this.props;
+
+      const currentCity = CITIES[city];
 
       const lessCurrency = isWholesale
         ? this.getCurrency(
-            PUR_KEY_WHOLESALE,
-            SEL_KEY_WHOLESALE,
+            currentCity.purKeyWhosale,
+            currentCity.selKeyWhosale,
             1,
             LESS_CURRENCY
           )
-        : this.getCurrency(PUR_KEY_RETAIL, SEL_KEY_RETAIL, 1, LESS_CURRENCY);
+        : this.getCurrency(
+            currentCity.purKeyRetail,
+            currentCity.selKeyRetail,
+            1,
+            LESS_CURRENCY
+          );
 
       const crossCurrency = isWholesale
         ? this.getCurrency(
-            PUR_KEY_WHOLESALE,
-            SEL_KEY_WHOLESALE,
+            currentCity.purKeyWhosale,
+            currentCity.selKeyWhosale,
             6,
             CROSS_CURRENCY
           )
-        : this.getCurrency(PUR_KEY_RETAIL, SEL_KEY_RETAIL, 6, CROSS_CURRENCY);
+        : this.getCurrency(
+            currentCity.purKeyRetail,
+            currentCity.selKeyRetail,
+            6,
+            CROSS_CURRENCY
+          );
 
       const currencyDataAdditional = this.getCurrency(
-        PUR_KEY_WHOLESALE,
-        SEL_KEY_WHOLESALE,
+        currentCity.purKeyWhosale,
+        currentCity.selKeyWhosale,
         10,
         MORE_CURRENCY
       );

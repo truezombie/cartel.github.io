@@ -16,12 +16,7 @@ export const CurrencyTile = React.memo(
           <div
             className={`currency-flag m-r-1 currency-flag-${from.toLowerCase()}`}
           />
-          <span
-            className={`has-text-weight-semibold ${
-              descr ? "is-tooltip-link tooltip" : null
-            }`}
-            data-tooltip={descr}
-          >
+          <span className={`has-text-weight-semibold`} title={descr}>
             {from}
           </span>
           &nbsp;
