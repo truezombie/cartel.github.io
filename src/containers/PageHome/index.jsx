@@ -109,7 +109,10 @@ export class PageHome extends React.Component {
           <title>{PAGE_TITLE}</title>
           <meta name="description" content={PAGE_TITLE} />
         </Helmet>
-        <Header phoneNumbers={CITIES[city].phoneNumbers} />
+        <Header
+          phoneNumbers={CITIES[city].phoneNumbers}
+          telegramLink={CITIES[city].telegram}
+        />
         <ModalMap
           mapUrl={CITIES[city].googleMap}
           show={showMap}

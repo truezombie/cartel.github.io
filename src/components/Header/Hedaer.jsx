@@ -18,7 +18,7 @@ export const Header = React.memo(props => {
   );
 
   return (
-    <div className="has-background-black-ter">
+    <div className="has-background-black-ter" id="header">
       <div className="container is-flex is-justified-between column">
         <Logo />
         <div className="is-flex is-justified-end">
@@ -27,14 +27,14 @@ export const Header = React.memo(props => {
               <p className="control">
                 <a
                   className="button is-dark is-hidden-touch"
-                  href="https://t.me/cartel_obmen"
+                  href={props.telegramLink}
                 >
                   <span className="icon m-r-1">{iconTelegram()}</span>
                   <span>Курс валют в Telegram</span>
                 </a>
                 <a
                   className="button is-dark is-hidden-desktop"
-                  href="https://t.me/cartel_obmen"
+                  href={props.telegramLink}
                 >
                   <span className="icon">{iconTelegram()}</span>
                 </a>
