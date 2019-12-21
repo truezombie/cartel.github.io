@@ -1,12 +1,17 @@
 // LIBRARIES
-import React from "react";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 // CONTAINERS
-import { PageHome } from "./containers/PageHome";
+import PageHome from './containers/PageHome';
 
-import "./styles/index.scss";
+import './styles/index.scss';
 
 function App() {
-  return <PageHome />;
+  return (
+    <BrowserRouter basename={'/'}>
+      <PageHome />
+    </BrowserRouter>
+  );
 }
 
 export default App;

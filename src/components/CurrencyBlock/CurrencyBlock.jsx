@@ -1,13 +1,13 @@
 // LIBRARIES
-import React, { useState } from "react";
-import dayjs from "dayjs";
+import React, { useState } from 'react';
+import dayjs from 'dayjs';
 // COMPONENTS
-import { CurrencyTile } from "../CurrencyTile";
-import { Toggler } from "../Toggler";
+import { CurrencyTile } from '../CurrencyTile';
+import { Toggler } from '../Toggler';
 // HOC
-import withCurrency from "./withCurrency";
+import withCurrency from './withCurrency';
 // CONSTANTS
-import { CITY_KEYS } from "../../containers/PageHome/constants";
+import { CITY_KEYS, CITIES } from '../../containers/PageHome/constants';
 
 const CurrencyBlock = ({
   city,
@@ -30,47 +30,32 @@ const CurrencyBlock = ({
   };
 
   const updatedMsg =
-    currency[0] && currency[0].updated["$t"]
-      ? dayjs(`${currency[0].updated["$t"]}`).format("YYYY.MM.DD HH:mm")
-      : "-";
+    currency[0] && currency[0].updated['$t']
+      ? dayjs(`${currency[0].updated['$t']}`).format('YYYY.MM.DD HH:mm')
+      : '-';
 
   return (
     <div className="container m-b-4">
       <div className="columns is-mobile m-t-0 m-l-0 m-r-0 m-b-0 has-text-white-bis border-bottom">
         <div className="column">
-          <div className="field is-size-7-mobile">
-            <input
-              className="is-checkradio is-white"
-              id="exampleRadioDefault"
-              type="radio"
-              name="exampleRadioDefault"
-              checked={city === CITY_KEYS.kharkiv}
-              readOnly
-            />
-            <label
-              htmlFor="exampleRadioDefault"
-              onClick={() => onChangeCity(CITY_KEYS.kharkiv)}
-            >
-              Харьков
-            </label>
-          </div>
-
-          <div className="field is-size-7-mobile">
-            <input
-              className="is-checkradio is-white"
-              id="exampleRadioSuccess"
-              type="radio"
-              name="exampleRadioSuccess"
-              checked={city === CITY_KEYS.pokrowsk}
-              readOnly
-            />
-            <label
-              htmlFor="exampleRadioSuccess"
-              onClick={() => onChangeCity(CITY_KEYS.pokrowsk)}
-            >
-              Покровск
-            </label>
-          </div>
+          {Object.values(CITY_KEYS).map(item => (
+            <div key={item} className="field is-size-7-mobile">
+              <input
+                className="is-checkradio is-white"
+                id="exampleRadioDefault"
+                type="radio"
+                name="exampleRadioDefault"
+                checked={city === item}
+                readOnly
+              />
+              <label
+                htmlFor="exampleRadioDefault"
+                onClick={() => onChangeCity(item)}
+              >
+                {CITIES[item].title}
+              </label>
+            </div>
+          ))}
         </div>
         <div className="column has-text-right is-three-fifths">
           <div className="m-b-3">
@@ -105,7 +90,7 @@ const CurrencyBlock = ({
                 className="has-text-white"
                 onClick={toggleWholesale}
               >
-                {isWholesale ? "ОПТ от 500$" : "Розница"}
+                {isWholesale ? 'ОПТ от 500$' : 'Розница'}
               </label>
             </div>
           </div>
