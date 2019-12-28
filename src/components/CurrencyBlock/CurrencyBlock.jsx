@@ -34,30 +34,47 @@ const CurrencyBlock = ({
       ? dayjs(`${currency[0].updated['$t']}`).format('YYYY.MM.DD HH:mm')
       : '-';
 
+  const currencyTableHeader = () => {
+    return (
+      <React.Fragment>
+        <div className="column is-flex is-aligned-center">
+          <span className="is-size-7-mobile">Покупка</span>
+        </div>
+        <div className="column is-flex is-aligned-center">
+          <span className="is-size-7-mobile">Продажа</span>
+        </div>
+      </React.Fragment>
+    );
+  };
+
   return (
     <div className="container m-b-4">
       <div className="columns is-mobile m-t-0 m-l-0 m-r-0 m-b-0 has-text-white-bis border-bottom">
-        <div className="column">
-          {Object.values(CITY_KEYS).map(item => (
-            <div key={item} className="field is-size-7-mobile">
-              <input
-                className="is-checkradio is-white"
-                id="exampleRadioDefault"
-                type="radio"
-                name="exampleRadioDefault"
-                checked={city === item}
-                readOnly
-              />
-              <label
-                htmlFor="exampleRadioDefault"
-                onClick={() => onChangeCity(item)}
-              >
-                {CITIES[item].title}
-              </label>
+        <div className="column is-flex is-aligned-center">
+          <div className="field">
+            <div className="control has-icons-left">
+              <div className="select dark-select">
+                <select
+                  value={city}
+                  onChange={value => onChangeCity(value.target.value)}
+                  className="is-small"
+                >
+                  {Object.values(CITY_KEYS).map(item => {
+                    return (
+                      <option key={item} value={item}>
+                        {CITIES[item].title}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+              <div className="icon is-left has-text-grey-light">
+                <i className="fas fa-map-marker-alt"></i>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-        <div className="column has-text-right is-three-fifths">
+        <div className="column has-text-right">
           <div className="m-b-3">
             <span className="icon m-r-1 align-middle has-text-grey-lighter">
               <i className="fas fa-history" />
@@ -95,12 +112,7 @@ const CurrencyBlock = ({
             </div>
           </div>
         </div>
-        <div className="column is-flex is-aligned-center">
-          <span className="is-size-7-mobile">Покупка</span>
-        </div>
-        <div className="column is-flex is-aligned-center">
-          <span className="is-size-7-mobile">Продажа</span>
-        </div>
+        {currencyTableHeader()}
       </div>
       <div className="border-wrapper">
         {currencyDataMain.map(item => (
@@ -138,12 +150,7 @@ const CurrencyBlock = ({
           </div>
           <div className="columns is-mobile has-background-grey-darker has-text-grey is-marginless">
             <div className="column is-half" />
-            <div className="column is-flex is-aligned-center">
-              <span className="is-size-7-mobile">Покупка</span>
-            </div>
-            <div className="column is-flex is-aligned-center">
-              <span className="is-size-7-mobile">Продажа</span>
-            </div>
+            {currencyTableHeader()}
           </div>
           <div className="border-wrapper">
             {currencyDataAdditional.map(item => (

@@ -11,7 +11,7 @@ import {
 } from '../../components';
 import { ModalMap } from './Modals';
 // CONSTANTS
-import { PAGE_TITLE, CITY_KEYS, CITIES } from './constants';
+import { PAGE_TITLE, CITY_KEYS, CITIES, LOCAL_STORAGE_KEY } from './constants';
 
 const PageHome = () => {
   const history = useHistory();
@@ -27,6 +27,7 @@ const PageHome = () => {
       loading: true
     });
 
+    localStorage.setItem(LOCAL_STORAGE_KEY, city);
     history.push(city);
   };
 
@@ -47,10 +48,18 @@ const PageHome = () => {
   useEffect(() => {
     const city = history.location.pathname;
 
-    if (Object.values(CITY_KEYS).indexOf(city) === -1) {
-      history.push(CITY_KEYS.kharkiv);
-    } else {
+    if (Object.values(CITY_KEYS).indexOf(city) !== -1) {
       getDataForChangedCity(city);
+    } else if (
+      Object.values(CITY_KEYS).indexOf(
+        localStorage.getItem(LOCAL_STORAGE_KEY)
+      ) !== -1
+    ) {
+      history.push(localStorage.getItem(LOCAL_STORAGE_KEY));
+      getDataForChangedCity(localStorage.getItem(LOCAL_STORAGE_KEY));
+    } else {
+      history.push(CITY_KEYS.kharkiv);
+      localStorage.setItem(LOCAL_STORAGE_KEY, CITY_KEYS.kharkiv);
     }
   }, [history, history.location.pathname, getDataForChangedCity]);
 

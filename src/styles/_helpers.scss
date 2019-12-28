@@ -14,3 +14,16 @@
 .z-index-999 {
   z-index: 999;
 }
+
+// selectors
+
+.dark-select {
+  select {
+    border-color: $grey;
+    background-color: $grey-dark;
+    color: $white;
+    &:hover {
+      border-color: $grey-light;
+    }
+  }
+}

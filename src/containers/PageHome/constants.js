@@ -1,3 +1,4 @@
+export const LOCAL_STORAGE_KEY = 'city';
 export const PAGE_TITLE =
   'Cartel круглосуточный обмен валют в Харькове по лучшему курсу. Прием ветхих купюр. Монет. Все валюты мира.';
 
@@ -63,7 +64,7 @@ export const CITIES = {
     googleMap:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2572.8217408370256!2d24.02284501570959!3d49.84580687939649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add7348730921%3A0xbec3834cc813896c!2z0L_RgNC-0YHQvy4g0JLRj9GH0LXRgdC70LDQstCwINCn0LXRgNC90L7QstC-0LvQsCwgNywg0JvRjNCy0L7Qsiwg0JvRjNCy0L7QstGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCA3OTAwMA!5e0!3m2!1sru!2sua!4v1575650972313!5m2!1sru!2sua',
     telegram: 'https://t.me/cartel_lviv',
-    purKeyWhosale: 'gsx$покровскопт',
+    purKeyWhosale: 'gsx$львовопт',
     selKeyWhosale: 'gsx$_cre1l',
     purKeyRetail: 'gsx$львов',
     selKeyRetail: 'gsx$_cokwr',
