@@ -1,14 +1,15 @@
 // LIBRARIES
-import React from "react";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 // COMPONENTS
-import { Logo } from "../Logo";
-// UTILS
-import { iconTelegram } from "../../utils/icons";
+import { Logo } from '../Logo';
 
 export const Header = React.memo(props => {
+  const { t } = useTranslation();
+
   const renderPhoneLine = phone => (
     <span key={phone}>
-      <span className="icon m-r-1 align-middle has-text-grey-lighter">
+      <span className="icon m-r-1 align-middle has-text-grey">
         <i className="fas fa-phone-alt" />
       </span>
       <a href={`tel:${phone}`} className="has-text-grey-lighter">
@@ -21,42 +22,46 @@ export const Header = React.memo(props => {
     <div className="has-background-black-ter" id="header">
       <div className="container is-flex is-justified-between column">
         <Logo />
-        <div className="is-flex is-justified-end">
-          <div className="is-flex is-aligned-center">
-            <div className="field has-addons">
-              <p className="control">
-                <a
-                  className="button is-dark is-hidden-touch"
-                  href={props.telegramLink}
-                >
-                  <span className="icon m-r-1">{iconTelegram()}</span>
-                  <span>Курс валют в Telegram</span>
-                </a>
-                <a
-                  className="button is-dark is-hidden-desktop"
-                  href={props.telegramLink}
-                >
-                  <span className="icon">{iconTelegram()}</span>
-                </a>
-              </p>
-              <p className="control">
-                <a href="#info" className="button is-dark is-hidden-touch">
-                  <span className="icon is-small">
-                    <i className="fas fa-map-marker-alt" />
-                  </span>
-                  <span>Мы находимся</span>
-                </a>
-                <a href="#info" className="button is-dark is-hidden-desktop">
-                  <span className="icon is-small">
-                    <i className="fas fa-phone-alt" />
-                  </span>
-                  <span>Контакты</span>
-                </a>
-              </p>
+        <div className="is-justified-end is-flex is-aligned-center">
+          <div className="has-text-grey-lighter is-hidden-touch">
+            <div>
+              <span className="icon fab fa-telegram-plane m-r-1 has-text-grey" />
+              <a
+                className="has-text-grey-lighter text-underline"
+                href={props.telegramLink}
+              >
+                {t('btn.telegram')}
+              </a>
+            </div>
+            <div>
+              <span className="icon fas fa-map-marker-alt m-r-1 has-text-grey" />
+              <a className="has-text-grey-lighter text-underline" href="#info">
+                {t('btn.location')}
+              </a>
             </div>
           </div>
-          <div className="m-l-4 is-flex is-justified-center is-flex-columns is-hidden-mobile">
+          <div className="m-l-4 is-flex is-justified-center is-flex-columns is-hidden-touch">
             {props.phoneNumbers.map(item => renderPhoneLine(item))}
+          </div>
+          <div className="field has-addons m-0 is-flex is-aligned-center is-hidden-desktop">
+            <p className="control">
+              <a
+                className="button is-dark has-text-grey-lighter"
+                href={props.telegramLink}
+              >
+                <span className="icon fab fa-telegram-plane m-r-1 has-text-grey m-0" />
+              </a>
+            </p>
+            <p className="control">
+              <a className="button is-dark has-text-grey-lighter" href="#info">
+                <span className="icon fas fa-map-marker-alt m-r-1 has-text-grey m-0" />
+              </a>
+            </p>
+            <p className="control">
+              <a className="button is-dark has-text-grey-lighter" href="#info">
+                <span className="icon fas fa-phone-alt m-r-1 has-text-grey m-0" />
+              </a>
+            </p>
           </div>
         </div>
       </div>

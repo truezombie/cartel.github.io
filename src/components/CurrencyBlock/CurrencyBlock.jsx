@@ -1,6 +1,8 @@
 // LIBRARIES
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
+import i18n from 'i18next';
 // COMPONENTS
 import { CurrencyTile } from '../CurrencyTile';
 import { Toggler } from '../Toggler';
@@ -22,6 +24,15 @@ const CurrencyBlock = ({
   const [openedMoreCurrencyState, setToggleOpenedMoreCurrency] = useState(
     false
   );
+  const {
+    t,
+    i18n: {
+      language,
+      store: { data }
+    }
+  } = useTranslation();
+
+  const languages = Object.keys(data);
 
   const toggleMoreCurrency = () => {
     setToggleOpenedMoreCurrency(
@@ -38,22 +49,26 @@ const CurrencyBlock = ({
     return (
       <React.Fragment>
         <div className="column is-flex is-aligned-center">
-          <span className="is-size-7-mobile">Покупка</span>
+          <span className="is-size-7-mobile">{t('table.purchase')}</span>
         </div>
         <div className="column is-flex is-aligned-center">
-          <span className="is-size-7-mobile">Продажа</span>
+          <span className="is-size-7-mobile">{t('table.sale')}</span>
         </div>
       </React.Fragment>
     );
+  };
+
+  const onChangeLanguage = lng => {
+    i18n.changeLanguage(lng);
   };
 
   return (
     <div className="container m-b-4">
       <div className="columns is-mobile m-t-0 m-l-0 m-r-0 m-b-0 has-text-white-bis border-bottom">
         <div className="column is-flex is-aligned-center">
-          <div className="field">
-            <div className="control has-icons-left">
-              <div className="select dark-select">
+          <div className="field m-r-2 m-b-0">
+            <div className="control">
+              <div className="select dark-select is-small">
                 <select
                   value={city}
                   onChange={value => onChangeCity(value.target.value)}
@@ -61,15 +76,35 @@ const CurrencyBlock = ({
                 >
                   {Object.values(CITY_KEYS).map(item => {
                     return (
-                      <option key={item} value={item}>
+                      <option
+                        key={item}
+                        onClick={onChangeLanguage}
+                        value={item}
+                      >
                         {CITIES[item].title}
                       </option>
                     );
                   })}
                 </select>
               </div>
-              <div className="icon is-left has-text-grey-light">
-                <i className="fas fa-map-marker-alt"></i>
+            </div>
+          </div>
+          <div className="field m-b-0">
+            <div className="control">
+              <div className="select dark-select is-small">
+                <select
+                  value={language}
+                  onChange={value => onChangeLanguage(value.target.value)}
+                  className="is-small"
+                >
+                  {languages.map(item => {
+                    return (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </div>
@@ -79,12 +114,11 @@ const CurrencyBlock = ({
             <span className="icon m-r-1 align-middle has-text-grey-lighter">
               <i className="fas fa-history" />
             </span>
-            Работаем 24/7
+            {t('table.works', { value: '24/7' })}
           </div>
           <div className="has-text-grey is-size-6 has-background-grey-darker m-b-0 is-size-7-mobile">
             <span className="align-sub">
-              <span className="is-hidden-mobile ">Обновлено:&nbsp;</span>
-              {updatedMsg}
+              {t('table.updated', { value: updatedMsg })}
             </span>
           </div>
         </div>
@@ -95,7 +129,7 @@ const CurrencyBlock = ({
           <div className="bd-notification is-dark">
             <div className="field is-size-7-mobile">
               <input
-                className="is-checkradio is-white"
+                className="is-checkradio is-white is-small"
                 id="exampleCheckboxWhite"
                 type="checkbox"
                 name="exampleCheckboxWhite"
@@ -107,7 +141,9 @@ const CurrencyBlock = ({
                 className="has-text-white"
                 onClick={toggleWholesale}
               >
-                {isWholesale ? 'ОПТ от 500$' : 'Розница'}
+                {isWholesale
+                  ? t('table.wholesale', { value: 500 })
+                  : t('table.retail')}
               </label>
             </div>
           </div>
@@ -129,8 +165,8 @@ const CurrencyBlock = ({
       </div>
 
       <Toggler
-        messageOpen="Скрыть другие валюты"
-        messageClose="Показать другие валюты"
+        messageOpen={t('table.hideAnotherCurrencies')}
+        messageClose={t('table.showAnotherCurrencies')}
         isOpen={openedMoreCurrencyState}
         onToggle={toggleMoreCurrency}
       />
@@ -146,7 +182,7 @@ const CurrencyBlock = ({
                 +38 (066) 262-2313
               </a>
             </span>
-            <span className="m-b-1"> - менеджер по мульти валюте</span>
+            <span className="m-b-1">{t('table.managerMultiCurrencies')}</span>
           </div>
           <div className="columns is-mobile has-background-grey-darker has-text-grey is-marginless">
             <div className="column is-half" />

@@ -1,0 +1,29 @@
+{
+  "btn": {
+    "telegram": "Курс в Telgram",
+    "location": "Ми знаходимося"
+  },
+  "cities": {
+    "kharkiv": "Харків",
+    "lviv": "Львів",
+    "pokrowsk": "Покровськ"
+  },
+  "table": {
+    "purchase": "Покупка",
+    "sale": "Продаж",
+    "wholesale": "ОПТ від {{value}}$",
+    "retail": "Уроздріб",
+    "updated": "Оновлено: {{value}}",
+    "works": "Працюемо {{value}}",
+    "showAnotherCurrencies": "Показати додакрові валюти",
+    "hideAnotherCurrencies": "Сховати додаткові валюти",
+    "managerMultiCurrencies": " - менеджер по мульти валюті"
+  },
+  "additionalInfo": {
+    "contacts": "Контакти",
+    "additional": "Додаткова iнформацiя",
+    "showOnMap": "Подивитися на мапі",
+    "coins": "Приймаемо монети",
+    "badBills": "Приймаемо старі купюри"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "btn": {
+    "telegram": "Kursy walut w telegramie",
+    "location": "Pracujemy 24/7"
+  },
+  "cities": {
+    "kharkiv": "Charków",
+    "lviv": "Lwów",
+    "pokrowsk": "Pokrovsk"
+  },
+  "table": {
+    "purchase": "Kup",
+    "sale": "Sprzedaż",
+    "wholesale": "Sprzedaż hurtowa od {{value}}$",
+    "retail": "Sprzedaż",
+    "updated": "Zaktualizowano: {{value}}",
+    "works": "Pracujemy {{value}}",
+    "showAnotherCurrencies": "Pokaż inne waluty",
+    "hideAnotherCurrencies": "Ukryj dodatkowe waluty",
+    "managerMultiCurrencies": " - Menedżer wielowalutowy"
+  },
+  "additionalInfo": {
+    "contacts": "Dane kontaktowe",
+    "additional": "Dodatkowe informacje",
+    "showOnMap": "Zobacz na mapie",
+    "coins": "Akceptuj monety",
+    "badBills": "Akceptujemy zrujnowane rachunki z minimalną prowizją"
+  }
+}

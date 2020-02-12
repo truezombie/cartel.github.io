@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 // COMPONENTS
 import {
   Header,
@@ -14,6 +15,7 @@ import { ModalMap } from './Modals';
 import { PAGE_TITLE, CITY_KEYS, CITIES, LOCAL_STORAGE_KEY } from './constants';
 
 const PageHome = () => {
+  const { t } = useTranslation();
   const history = useHistory();
   const [isShowMap, setIsShowMap] = useState(false);
   const [stateCurrency, setStateCurrency] = useState({
@@ -96,7 +98,7 @@ const PageHome = () => {
         <div className="columns m-b-0 m-t-4 m-l-0 m-r-0">
           <div className="column">
             <h2 className="is-size-5-touch is-size-5-desktop title has-text-grey">
-              Контакты
+              {t('additionalInfo.contacts')}
             </h2>
             {CITIES[city].cityInfo.map(item => (
               <InfoLine key={item.label} icon={item.icon}>
@@ -105,16 +107,16 @@ const PageHome = () => {
             ))}
             <InfoLine icon="fa-map-marked">
               <a
-                className="has-text-grey-light text-underline"
+                className="has-text-grey-lighter text-underline text-underline"
                 onClick={() => setIsShowMap(!isShowMap)}
               >
-                Посмотреть на карте
+                {t('additionalInfo.showOnMap')}
               </a>
             </InfoLine>
             <div className="is-flex is-justified-center is-flex-columns">
               {CITIES[city].phoneNumbers.map(item => (
                 <span key={item} className="m-b-2">
-                  <span className="icon m-r-1 align-middle has-text-grey-lighter">
+                  <span className="icon m-r-1 align-middle has-text-grey">
                     <i className="fas fa-phone-alt" />
                   </span>
                   <a href={`tel:${item}`} className="has-text-grey-lighter">
@@ -126,17 +128,14 @@ const PageHome = () => {
           </div>
           <div className="column has-text-left-touch has-text-right-desktop">
             <h2 className="is-size-5-touch is-size-5-desktop title has-text-grey">
-              Дополнительная информация
+              {t('additionalInfo.additional')}
             </h2>
-            <h2 className="title is-size-6-desktop is-size-6-touch has-text-grey-lighter m-b-2">
-              <span className="icon m-r-1 align-middle has-text-grey-lighter">
-                <i className="fas fa-history" />
-              </span>
-              Работаем 24/7
-            </h2>
-            <InfoLine icon="fa-coins">{'Принимаем монеты'}</InfoLine>
+            <InfoLine icon="fa-history">
+              {t('table.works', { value: '24/7' })}
+            </InfoLine>
+            <InfoLine icon="fa-coins">{t('additionalInfo.coins')}</InfoLine>
             <InfoLine icon="fa-money-bill-wave">
-              {'Принимаем ветхие купюры с минимальной комиссией'}
+              {t('additionalInfo.badBills')}
             </InfoLine>
           </div>
         </div>
