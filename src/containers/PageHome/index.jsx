@@ -1,5 +1,6 @@
 // LIBRARIES
 import React, { useEffect, useState, useCallback } from 'react';
+import i18n from 'i18next';
 import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
@@ -8,14 +9,20 @@ import {
   Header,
   CurrencyBlock,
   InfoLine,
-  ErrorBoundary
+  ErrorBoundary,
+  Footer
 } from '../../components';
 import { ModalMap } from './Modals';
 // CONSTANTS
-import { PAGE_TITLE, CITY_KEYS, CITIES, LOCAL_STORAGE_KEY } from './constants';
+import { CITY_KEYS, CITIES, SEARCH_PARAMS_KEYS } from './constants';
 
 const PageHome = () => {
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: {
+      store: { data: dataLanguages }
+    }
+  } = useTranslation();
   const history = useHistory();
   const [isShowMap, setIsShowMap] = useState(false);
   const [stateCurrency, setStateCurrency] = useState({
@@ -23,14 +30,35 @@ const PageHome = () => {
     currencyEntry: []
   });
 
-  const onChangeCity = city => {
-    setStateCurrency({
-      ...stateCurrency,
-      loading: true
-    });
+  const validationFunctionCity = value => {
+    return Object.values(CITY_KEYS).indexOf(value) === -1 ? null : value;
+  };
 
-    localStorage.setItem(LOCAL_STORAGE_KEY, city);
-    history.push(city);
+  const validationFunctionLanguage = value => {
+    return Object.keys(dataLanguages).indexOf(value) === -1 ? null : value;
+  };
+
+  const getSearchParam = (key, defaultValue, validationFunction) => {
+    const params = new URL(document.location).searchParams;
+    const paramLocalStorage = localStorage.getItem(key);
+    const paramQuery = params.get(key);
+
+    return (
+      validationFunction(paramQuery) ||
+      validationFunction(paramLocalStorage) ||
+      defaultValue
+    );
+  };
+
+  const setSearchParam = (key, value) => {
+    let params = new URLSearchParams(window.location.search);
+
+    params.set(key, value);
+
+    history.push({
+      pathname: '/',
+      search: params.toString()
+    });
   };
 
   const getDataForChangedCity = useCallback(city => {
@@ -47,35 +75,85 @@ const PageHome = () => {
       });
   }, []);
 
-  useEffect(() => {
-    const city = history.location.pathname;
-
-    if (Object.values(CITY_KEYS).indexOf(city) !== -1) {
-      getDataForChangedCity(city);
-    } else if (
-      Object.values(CITY_KEYS).indexOf(
-        localStorage.getItem(LOCAL_STORAGE_KEY)
-      ) !== -1
-    ) {
-      history.push(localStorage.getItem(LOCAL_STORAGE_KEY));
-      getDataForChangedCity(localStorage.getItem(LOCAL_STORAGE_KEY));
-    } else {
-      history.push(CITY_KEYS.kharkiv);
-      localStorage.setItem(LOCAL_STORAGE_KEY, CITY_KEYS.kharkiv);
+  const CITIES_TRANSLATES = {
+    [CITY_KEYS.kharkiv]: {
+      title: t('cities.kharkiv.title'),
+      cityInfo: [
+        {
+          label: t('cities.kharkiv.address'),
+          icon: 'fa-map-marked'
+        },
+        {
+          label: t('cities.kharkiv.additional'),
+          icon: 'fa-subway'
+        }
+      ]
+    },
+    [CITY_KEYS.pokrowsk]: {
+      title: t('cities.pokrowsk.title'),
+      cityInfo: [
+        {
+          label: t('cities.pokrowsk.address'),
+          icon: 'fa-map-marked'
+        }
+      ]
+    },
+    [CITY_KEYS.lviv]: {
+      title: t('cities.lviv.title'),
+      cityInfo: [
+        {
+          label: t('cities.lviv.address'),
+          icon: 'fa-map-marked'
+        },
+        {
+          label: t('cities.lviv.additional'),
+          icon: 'fa-building'
+        }
+      ]
     }
-  }, [history, history.location.pathname, getDataForChangedCity]);
+  };
 
-  const city =
-    Object.values(CITY_KEYS).indexOf(history.location.pathname) === -1
-      ? CITY_KEYS.kharkiv
-      : history.location.pathname;
+  const onChangeCity = city => {
+    setStateCurrency({
+      ...stateCurrency,
+      loading: true
+    });
+
+    localStorage.setItem(SEARCH_PARAMS_KEYS.city, city);
+    setSearchParam(SEARCH_PARAMS_KEYS.city, city);
+  };
+
+  const onChangeLanguage = language => {
+    localStorage.setItem(SEARCH_PARAMS_KEYS.language, language);
+    setSearchParam(SEARCH_PARAMS_KEYS.language, language);
+  };
+
+  const city = getSearchParam(
+    SEARCH_PARAMS_KEYS.city,
+    CITY_KEYS.kharkiv,
+    validationFunctionCity
+  );
+
+  const lang = getSearchParam(
+    SEARCH_PARAMS_KEYS.language,
+    'ua',
+    validationFunctionLanguage
+  );
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang, getDataForChangedCity]);
+
+  useEffect(() => {
+    getDataForChangedCity(city);
+  }, [city, getDataForChangedCity]);
 
   return (
     <React.Fragment>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{PAGE_TITLE}</title>
-        <meta name="description" content={PAGE_TITLE} />
+        <title>{t('page.title')}</title>
+        <meta name="description" content={t('page.title')} />
       </Helmet>
       <Header
         phoneNumbers={CITIES[city].phoneNumbers}
@@ -92,6 +170,8 @@ const PageHome = () => {
           currency={stateCurrency.currencyEntry}
           city={city}
           onChangeCity={onChangeCity}
+          onChangeLanguage={onChangeLanguage}
+          citesTranslates={CITIES_TRANSLATES}
         />
       </ErrorBoundary>
       <section id="info" className="container m-t-4 m-b-4 border-top">
@@ -100,7 +180,7 @@ const PageHome = () => {
             <h2 className="is-size-5-touch is-size-5-desktop title has-text-grey">
               {t('additionalInfo.contacts')}
             </h2>
-            {CITIES[city].cityInfo.map(item => (
+            {CITIES_TRANSLATES[city].cityInfo.map(item => (
               <InfoLine key={item.label} icon={item.icon}>
                 {item.label}
               </InfoLine>
@@ -140,6 +220,7 @@ const PageHome = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </React.Fragment>
   );
 };

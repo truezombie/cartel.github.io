@@ -1,16 +1,16 @@
-export const LOCAL_STORAGE_KEY = 'city';
-export const PAGE_TITLE =
-  'Cartel круглосуточный обмен валют в Харькове по лучшему курсу. Прием ветхих купюр. Монет. Все валюты мира.';
+export const SEARCH_PARAMS_KEYS = {
+  city: 'city',
+  language: 'language'
+};
 
 export const CITY_KEYS = {
-  kharkiv: '/kharkiv',
-  pokrowsk: '/pokrowsk',
-  lviv: '/lviv'
+  kharkiv: 'kharkiv',
+  pokrowsk: 'pokrowsk',
+  lviv: 'lviv'
 };
 
 export const CITIES = {
   [CITY_KEYS.kharkiv]: {
-    title: 'Харьков',
     tableUrl:
       'https://spreadsheets.google.com/feeds/list/1kuQeHmD3bLeYYtH5-okltD_IOzAj07W7KXiAm6XWdQM/1/public/values?alt=json',
     googleMap:
@@ -21,20 +21,9 @@ export const CITIES = {
     purKeyRetail: 'gsx$харьков',
     selKeyRetail: 'gsx$_cokwr',
     deskKey: 'gsx$_ciyn3',
-    phoneNumbers: ['+38 (099) 903-9003', '+38 (068) 903-9003'],
-    cityInfo: [
-      {
-        label: 'г. Харьков, пр Науки 7',
-        icon: 'fa-map-marked'
-      },
-      {
-        label: 'станция метро Научная',
-        icon: 'fa-subway'
-      }
-    ]
+    phoneNumbers: ['+38 (099) 903-9003', '+38 (068) 903-9003']
   },
   [CITY_KEYS.pokrowsk]: {
-    title: 'Покровск',
     tableUrl:
       'https://spreadsheets.google.com/feeds/list/1w9xh5QSJRqHKgMHvubJ-HtOZmvDj9Q8468o6B0A6aZk/1/public/values?alt=json',
     googleMap:
@@ -49,16 +38,9 @@ export const CITIES = {
       '+38 (095) 550-9090',
       '+38 (098) 550-9090',
       '+38 (063) 550-9090'
-    ],
-    cityInfo: [
-      {
-        label: 'г. Покровск, ул Лихачева 14',
-        icon: 'fa-map-marked'
-      }
     ]
   },
   [CITY_KEYS.lviv]: {
-    title: 'Львов',
     tableUrl:
       'https://spreadsheets.google.com/feeds/list/1x08F3c-RqLlsJyzZj1Q292Mp476GQz50hjq6myPz1cY/1/public/values?alt=json',
     googleMap:
@@ -69,16 +51,6 @@ export const CITIES = {
     purKeyRetail: 'gsx$львов',
     selKeyRetail: 'gsx$_cokwr',
     deskKey: 'gsx$_ciyn3',
-    phoneNumbers: ['+38 (068) 440-6644', '+38 (099) 440-6644'],
-    cityInfo: [
-      {
-        label: 'г. Львов, пр Вячеслава Черновола 7',
-        icon: 'fa-map-marked'
-      },
-      {
-        label: 'Отель "Львов" (с правой стороны от входа)',
-        icon: 'fa-building'
-      }
-    ]
+    phoneNumbers: ['+38 (068) 440-6644', '+38 (099) 440-6644']
   }
 };

@@ -1,12 +1,26 @@
 {
+  "page": {
+    "title": "Cartel - całodobowy kantor wymiany walut po najlepszym kursie. Odbiór starych banknotów, monet. Wszystkie waluty na świecie."
+  },
   "btn": {
     "telegram": "Kursy walut w telegramie",
     "location": "Pracujemy 24/7"
   },
   "cities": {
-    "kharkiv": "Charków",
-    "lviv": "Lwów",
-    "pokrowsk": "Pokrovsk"
+    "kharkiv": {
+      "title": "Charków",
+      "address": "Charków, pr. Nauki 7",
+      "additional": "stacja metra Nauchnaya"
+    },
+    "lviv": {
+      "title": "Lwów",
+      "address": "Lwów, pr. Wiaczesław Chernovol 7",
+      "additional": "Hotel 'Lwów' (po prawej stronie wejścia)"
+    },
+    "pokrowsk": {
+      "title": "Pokrovsk",
+      "address": "Pokrovsk, ul.Lichaczew 14"
+    }
   },
   "table": {
     "purchase": "Kup",
@@ -25,5 +39,8 @@
     "showOnMap": "Zobacz na mapie",
     "coins": "Akceptuj monety",
     "badBills": "Akceptujemy zrujnowane rachunki z minimalną prowizją"
+  },
+  "footer": {
+    "text": ""
   }
 }

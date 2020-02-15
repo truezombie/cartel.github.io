@@ -2,24 +2,25 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
-import i18n from 'i18next';
 // COMPONENTS
 import { CurrencyTile } from '../CurrencyTile';
 import { Toggler } from '../Toggler';
 // HOC
 import withCurrency from './withCurrency';
 // CONSTANTS
-import { CITY_KEYS, CITIES } from '../../containers/PageHome/constants';
+import { CITY_KEYS } from '../../containers/PageHome/constants';
 
 const CurrencyBlock = ({
   city,
   onChangeCity,
+  onChangeLanguage,
   currency,
   loading,
   toggleWholesale,
   isWholesale,
   currencyDataMain,
-  currencyDataAdditional
+  currencyDataAdditional,
+  citesTranslates
 }) => {
   const [openedMoreCurrencyState, setToggleOpenedMoreCurrency] = useState(
     false
@@ -58,10 +59,6 @@ const CurrencyBlock = ({
     );
   };
 
-  const onChangeLanguage = lng => {
-    i18n.changeLanguage(lng);
-  };
-
   return (
     <div className="container m-b-4">
       <div className="columns is-mobile m-t-0 m-l-0 m-r-0 m-b-0 has-text-white-bis border-bottom">
@@ -81,7 +78,7 @@ const CurrencyBlock = ({
                         onClick={onChangeLanguage}
                         value={item}
                       >
-                        {CITIES[item].title}
+                        {citesTranslates[item].title}
                       </option>
                     );
                   })}
@@ -110,14 +107,8 @@ const CurrencyBlock = ({
           </div>
         </div>
         <div className="column has-text-right">
-          <div className="m-b-3">
-            <span className="icon m-r-1 align-middle has-text-grey-lighter">
-              <i className="fas fa-history" />
-            </span>
-            {t('table.works', { value: '24/7' })}
-          </div>
-          <div className="has-text-grey is-size-6 has-background-grey-darker m-b-0 is-size-7-mobile">
-            <span className="align-sub">
+          <div className="has-text-grey-light is-size-6 has-background-grey-darker m-b-0 is-size-7-mobile">
+            <span className="align-sub is-size-7">
               {t('table.updated', { value: updatedMsg })}
             </span>
           </div>
