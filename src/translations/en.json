@@ -1,44 +1,44 @@
 {
   "page": {
-    "title": "Cartel - цілодобовий обмін валют по найкращому курсу. Прийом старих купюр, монет. Всі валюти світу."
+    "title": "Cartel - round-the-clock currency exchange at the best rate. Acceptance of old bills, coins. All currencies of the world."
   },
   "btn": {
-    "telegram": "Курс в Telgram",
-    "location": "Ми знаходимося"
+    "telegram": "Telegram Course",
+    "location": "we are located"
   },
   "cities": {
     "kharkiv": {
-      "title": "Харкiв",
-      "address": "м. Харкiв, пр Науки 7",
-      "additional": "станцiя метро Наукова"
+      "title": "Kharkiv",
+      "address": "Kharkiv city, Nauki Avenue 7",
+      "additional": "Subway station Nauki"
     },
     "lviv": {
-      "title": "Львiв",
-      "address": "м. Львiв, пр Вячеслава Черновола 7",
-      "additional": "Готель Львiв (с правої сторони вiд входу)"
+      "title": "Lviv",
+      "address": "Lviv city, Vyacheslav Chernovol Square 7 ",
+      "additional": "Hotel Lviv (on the right side of the entrance)"
     },
     "pokrowsk": {
-      "title": "Покровськ",
-      "address": "м. Покровськ, вул Лихачова 14"
+      "title": "Pokrovsk",
+      "address": "Pokrovsk city, Likhachev street 14"
     }
   },
   "table": {
-    "purchase": "Покупка",
-    "sale": "Продаж",
-    "wholesale": "ОПТ від {{value}}$",
-    "retail": "Уроздріб",
-    "updated": "Оновлено: {{value}}",
-    "works": "Працюемо {{value}}",
-    "showAnotherCurrencies": "Показати додакрові валюти",
-    "hideAnotherCurrencies": "Сховати додаткові валюти",
-    "managerMultiCurrencies": " - менеджер по мульти валюті"
+    "purchase": "Purchase",
+    "sale": "Sale",
+    "wholesale": "Wholesale from {{value}}$",
+    "retail": "Retail",
+    "updated": "Updated: {{value}}",
+    "works": "We are working {{value}}",
+    "showAnotherCurrencies": "Show additional currencies",
+    "hideAnotherCurrencies": "Hide additional currencies",
+    "managerMultiCurrencies": " - multi currency manager"
   },
   "additionalInfo": {
-    "contacts": "Контакти",
-    "additional": "Додаткова iнформацiя",
-    "showOnMap": "Подивитися на мапі",
-    "coins": "Приймаемо монети",
-    "badBills": "Приймаемо старі купюри"
+    "contacts": "Contacts",
+    "additional": "Additional Information",
+    "showOnMap": "Look at the map",
+    "coins": "Accept coins",
+    "badBills": "Accept old bills"
   },
   "footer": {
     "text": ""
