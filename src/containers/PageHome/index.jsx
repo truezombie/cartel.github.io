@@ -20,6 +20,7 @@ const PageHome = () => {
   const {
     t,
     i18n: {
+      language,
       store: { data: dataLanguages }
     }
   } = useTranslation();
@@ -220,7 +221,7 @@ const PageHome = () => {
           </div>
         </div>
       </section>
-      <Footer />
+      <Footer language={language} />
     </React.Fragment>
   );
 };

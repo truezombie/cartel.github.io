@@ -29,7 +29,7 @@
     "retail": "Уроздріб",
     "updated": "Оновлено: {{value}}",
     "works": "Працюемо {{value}}",
-    "showAnotherCurrencies": "Показати додакрові валюти",
+    "showAnotherCurrencies": "Показати додаткові валюти",
     "hideAnotherCurrencies": "Сховати додаткові валюти",
     "managerMultiCurrencies": " - менеджер по мульти валюті"
   },
@@ -39,8 +39,5 @@
     "showOnMap": "Подивитися на мапі",
     "coins": "Приймаемо монети",
     "badBills": "Приймаемо старі купюри"
-  },
-  "footer": {
-    "text": ""
   }
 }
